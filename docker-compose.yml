@@ -251,4 +251,19 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=${TZ}  
+      - TZ=${TZ}
+
+  #  Ombi allows you to accept Movie or TV Show requests from friends and family.
+  ombi:
+    container_name: ombi
+    restart: always
+    image: linuxserver/ombi
+    volumes:
+      - ${USERDIR}/docker/ombi:/config
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "9009:3579"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
