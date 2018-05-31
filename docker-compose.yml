@@ -74,3 +74,25 @@ services:
     # --interval 30 for checking every 30 seconds. If you want weekly, then use
     # 0 0 23 * * SUN for every update at 11 pm on Sundays.
     command: --schedule "0 0 4 * * *" --cleanup
+
+  # For configeration see
+  # https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/#Smart_Home_Apps
+  homeassistant:
+    container_name: homeassistant
+    restart: always
+    image: homeassistant/home-assistant
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
+    #   - /dev/ttyUSB1:/dev/ttyUSB1
+    #   - /dev/ttyACM0:/dev/ttyACM0
+    volumes:
+      - ${USERDIR}/docker/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "9002:8123"
+    privileged: true
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
