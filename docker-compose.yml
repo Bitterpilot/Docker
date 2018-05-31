@@ -16,8 +16,8 @@ services:
 
   organizr:
     container_name: organizr
-    restart: always
     image: lsiocommunity/organizr
+    restart: always
     volumes:
       - ${USERDIR}/docker/organizr:/config
       - ${USERDIR}/docker/shared:/shared
@@ -29,8 +29,9 @@ services:
       - TZ=${TZ}
 
   mariadb:
-    image: "linuxserver/mariadb"
     container_name: "mariadb"
+    image: "linuxserver/mariadb"
+    restart: always
     hostname: mariadb
     volumes:
         - ${USERDIR}/docker/mariadb:/config
@@ -39,7 +40,6 @@ services:
         published: 3306
         protocol: tcp
         mode: host
-    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PUID=${PUID}
@@ -47,12 +47,12 @@ services:
       - TZ=${TZ}
 
   phpmyadmin:
-    hostname: phpmyadmin
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     restart: always
     links:
       - mariadb:db
+    hostname: phpmyadmin
     ports:
       - 9001:80
     environment:
@@ -65,8 +65,8 @@ services:
   # while deploying.
   watchtower:
     container_name: watchtower
-    restart: always
     image: v2tec/watchtower
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     # --schedule "0 0 4 * * *" – containers are checked for updates at 4 am everyday.
@@ -79,8 +79,8 @@ services:
   # https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/#Smart_Home_Apps
   homeassistant:
     container_name: homeassistant
-    restart: always
     image: homeassistant/home-assistant
+    restart: always
     # devices:
     #   - /dev/ttyUSB0:/dev/ttyUSB0
     #   - /dev/ttyUSB1:/dev/ttyUSB1
@@ -102,11 +102,11 @@ services:
   # transmission-vpn:
     # container_name: transmission-vpn
     # image: haugene/transmission-openvpn
+    # restart: always
     # cap_add:
       # - NET_ADMIN
     # devices:
       # - /dev/net/tun
-    # restart: always
     # ports:
     # - "9003:9091"
     # dns:
@@ -138,8 +138,9 @@ services:
       # - TRANSMISSION_RATIO_LIMIT_ENABLED=true
 
   qbittorrent:
-    image: "linuxserver/qbittorrent"
     container_name: "qbittorrent"
+    image: "linuxserver/qbittorrent"
+    restart: always
     volumes:
       - ${USERDIR}/docker/qbittorrent:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -148,7 +149,6 @@ services:
       - "9004:9004"
       - "6881:6881"
       - "6881:6881/udp"
-    restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -157,8 +157,9 @@ services:
       - WEBUI_PORT=9004
 
   sabnzbd:
-    image: "linuxserver/sabnzbd"
     container_name: "sabnzbd"
+    image: "linuxserver/sabnzbd"
+    restart: always
     volumes:
       - ${USERDIR}/docker/sabnzbd:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -166,15 +167,15 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
         - "9005:8080"
-    restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
 
   radarr:
-    image: "linuxserver/radarr"
     container_name: "radarr"
+    image: "linuxserver/radarr"
+    restart: always
     volumes:
       - ${USERDIR}/docker/radarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -184,15 +185,15 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "9006:7878"
-    restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
 
   sonarr:
-    image: "linuxserver/sonarr"
     container_name: "sonarr"
+    image: "linuxserver/sonarr"
+    restart: always
     volumes:
       - ${USERDIR}/docker/sonarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -202,16 +203,15 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
         - "9007:8989"
-    restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
 
   plex:
-    container_name: plex
-    restart: always
+    container_name: "plex"
     image: plexinc/pms-docker
+    restart: always
     volumes:
       - ${USERDIR}/docker/plexms:/config
       # temporary folder for transcoding.
@@ -240,8 +240,8 @@ services:
   # Monitoring Plex Usage
   tautulli:
     container_name: tautulli
-    restart: always
     image: linuxserver/tautulli
+    restart: always
     volumes:
       - ${USERDIR}/docker/tautulli/config:/config
       - ${USERDIR}/docker/tautulli/logs:/logs:ro
@@ -256,8 +256,8 @@ services:
   #  Ombi allows you to accept Movie or TV Show requests from friends and family.
   ombi:
     container_name: ombi
-    restart: always
     image: linuxserver/ombi
+    restart: always
     volumes:
       - ${USERDIR}/docker/ombi:/config
       - ${USERDIR}/docker/shared:/shared
@@ -270,15 +270,15 @@ services:
 
   # Hydra is a meta search for NZB indexers
   hydra:
-    image: "linuxserver/hydra"
     container_name: "hydra"
+    image: "linuxserver/hydra"
+    restart: always
     volumes:
       - ${USERDIR}/docker/hydra:/config
       - ${USERDIR}/Downloads:/downloads
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "9010:5075"
-    restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -288,8 +288,9 @@ services:
   # CouchPotato, Sonarr, Mylar, Radarr, etc. into torrent tracker-site-specific HTTP
   # queries.
   jackett:
-    image: "linuxserver/jackett"
     container_name: "jackett"
+    image: "linuxserver/jackett"
+    restart: always
     volumes:
       - ${USERDIR}/docker/jackett:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -297,7 +298,6 @@ services:
       - ${USERDIR}/docker/shared:/shared
     ports:
       - "9011:9117"
-    restart: always
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
