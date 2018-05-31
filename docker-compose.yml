@@ -1,5 +1,6 @@
 version: "3.6"
 services:
+# Support Containers
   portainer:
     image: portainer/portainer
     container_name: portainer
@@ -13,6 +14,22 @@ services:
       - ${USERDIR}/docker/shared:/shared
     environment:
       - TZ=${TZ}
+
+  # Watchtower monitors your Docker containers. If their images in the Docker Store
+  # change, then watchtower will pull the new image, shutdown the running container
+  # and restart with the new image and the options you originally set for the container
+  # while deploying.
+  watchtower:
+    container_name: watchtower
+    image: v2tec/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    # --schedule "0 0 4 * * *" – containers are checked for updates at 4 am everyday.
+    # You can use the 6-digit cron schedule or you can specify time interval:
+    # --interval 30 for checking every 30 seconds. If you want weekly, then use
+    # 0 0 23 * * SUN for every update at 11 pm on Sundays.
+    command: --schedule "0 0 4 * * *" --cleanup
 
   organizr:
     container_name: organizr
@@ -59,22 +76,6 @@ services:
       - PMA_HOST=mariadb
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
-  # Watchtower monitors your Docker containers. If their images in the Docker Store
-  # change, then watchtower will pull the new image, shutdown the running container
-  # and restart with the new image and the options you originally set for the container
-  # while deploying.
-  watchtower:
-    container_name: watchtower
-    image: v2tec/watchtower
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    # --schedule "0 0 4 * * *" – containers are checked for updates at 4 am everyday.
-    # You can use the 6-digit cron schedule or you can specify time interval:
-    # --interval 30 for checking every 30 seconds. If you want weekly, then use
-    # 0 0 23 * * SUN for every update at 11 pm on Sundays.
-    command: --schedule "0 0 4 * * *" --cleanup
-
   # For configeration see
   # https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/#Smart_Home_Apps
   homeassistant:
@@ -96,6 +97,9 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+
+
+# Media Stuff
 
   # For configeration see
   # https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/#Downloaders
