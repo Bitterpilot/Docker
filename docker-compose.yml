@@ -178,7 +178,7 @@ services:
     volumes:
       - ${USERDIR}/docker/radarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
-      # todo change media dir
+      # TODO change media dir
       - ${USERDIR}/media/movies:/movies
       - "/etc/localtime:/etc/localtime:ro"
       - ${USERDIR}/docker/shared:/shared
@@ -196,7 +196,7 @@ services:
     volumes:
       - ${USERDIR}/docker/sonarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
-      # todo change media dir
+      # TODO change media dir
       - ${USERDIR}/media/tvshows:/tv
       - "/etc/localtime:/etc/localtime:ro"
       - ${USERDIR}/docker/shared:/shared
@@ -207,3 +207,48 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+
+  plex:
+    container_name: plex
+    restart: always
+    image: plexinc/pms-docker
+    volumes:
+      - ${USERDIR}/docker/plexms:/config
+      # temporary folder for transcoding.
+      - ${USERDIR}/Downloads/plex_tmp:/transcode
+      # TODO Change media directory
+      - /media/media:/media
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "32400:32400/tcp"
+      - "3005:3005/tcp"
+      - "8324:8324/tcp"
+      - "32469:32469/tcp"
+      - "1900:1900/udp"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+    environment:
+      - TZ=${TZ}
+      - HOSTNAME="Docker Plex"
+      - PLEX_CLAIM="claim-x5RqoT5zRdk5yHfd5iBb"
+      - PLEX_UID=${PUID}
+      - PLEX_GID=${PGID}
+      - ADVERTISE_IP="http://192.168.1.122:32400/"
+
+  # Monitoring Plex Usage
+  tautulli:
+    container_name: tautulli
+    restart: always
+    image: linuxserver/tautulli
+    volumes:
+      - ${USERDIR}/docker/tautulli/config:/config
+      - ${USERDIR}/docker/tautulli/logs:/logs:ro
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "9008:8181"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}  
