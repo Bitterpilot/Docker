@@ -267,3 +267,38 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+
+  # Hydra is a meta search for NZB indexers
+  hydra:
+    image: "linuxserver/hydra"
+    container_name: "hydra"
+    volumes:
+      - ${USERDIR}/docker/hydra:/config
+      - ${USERDIR}/Downloads:/downloads
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "9010:5075"
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ} 
+  
+  # Jackett is a proxy server that translates search queries from apps such as SickRage,
+  # CouchPotato, Sonarr, Mylar, Radarr, etc. into torrent tracker-site-specific HTTP
+  # queries.
+  jackett:
+    image: "linuxserver/jackett"
+    container_name: "jackett"
+    volumes:
+      - ${USERDIR}/docker/jackett:/config
+      - ${USERDIR}/Downloads/completed:/downloads
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "9011:9117"
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
