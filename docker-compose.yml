@@ -6,7 +6,7 @@ services:
     container_name: portainer
     restart: always
     command: --templates http://templates/templates.json
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -38,7 +38,7 @@ services:
     volumes:
       - ${USERDIR}/docker/organizr:/config
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports: # TODO add ipaddress hostip:hostport:containerport
       - "80:80"
     environment:
       - PUID=${PUID}
@@ -70,7 +70,7 @@ services:
     links:
       - mariadb:db
     hostname: phpmyadmin
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - 9001:80
     environment:
       - PMA_HOST=mariadb
@@ -90,7 +90,7 @@ services:
       - ${USERDIR}/docker/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport hostip:hostport:containerport
       - "9002:8123"
     privileged: true
     environment:
@@ -149,7 +149,7 @@ services:
       - ${USERDIR}/docker/qbittorrent:/config
       - ${USERDIR}/Downloads/completed:/downloads
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "9004:9004"
       - "6881:6881"
       - "6881:6881/udp"
@@ -169,7 +169,7 @@ services:
       - ${USERDIR}/Downloads/completed:/downloads
       - ${USERDIR}/Downloads/incomplete:/incomplete-downloads
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
         - "9005:8080"
     environment:
       - PUID=${PUID}
@@ -187,7 +187,7 @@ services:
       - ${USERDIR}/media/movies:/movies
       - "/etc/localtime:/etc/localtime:ro"
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "9006:7878"
     environment:
       - PUID=${PUID}
@@ -205,7 +205,7 @@ services:
       - ${USERDIR}/media/tvshows:/tv
       - "/etc/localtime:/etc/localtime:ro"
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
         - "9007:8989"
     environment:
       - PUID=${PUID}
@@ -223,7 +223,7 @@ services:
       # TODO Change media directory
       - /media/media:/media
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "32400:32400/tcp"
       - "3005:3005/tcp"
       - "8324:8324/tcp"
@@ -250,7 +250,7 @@ services:
       - ${USERDIR}/docker/tautulli/config:/config
       - ${USERDIR}/docker/tautulli/logs:/logs:ro
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "9008:8181"
     environment:
       - PUID=${PUID}
@@ -265,7 +265,7 @@ services:
     volumes:
       - ${USERDIR}/docker/ombi:/config
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "9009:3579"
     environment:
       - PUID=${PUID}
@@ -281,7 +281,7 @@ services:
       - ${USERDIR}/docker/hydra:/config
       - ${USERDIR}/Downloads:/downloads
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "9010:5075"
     environment:
       - PUID=${PUID}
@@ -300,7 +300,7 @@ services:
       - ${USERDIR}/Downloads/completed:/downloads
       - "/etc/localtime:/etc/localtime:ro"
       - ${USERDIR}/docker/shared:/shared
-    ports:
+    ports:  # TODO add ipaddress hostip:hostport:containerport
       - "9011:9117"
     environment:
       - PUID=${PUID}
