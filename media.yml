@@ -2,7 +2,7 @@ version: "3.6"
 services:
 # Media Stuff
 
-  # Downloaders
+# Downloaders
   # For configeration see
   # https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/#Downloaders
 
@@ -10,48 +10,48 @@ services:
     container_name: "qbittorrent"
     image: "linuxserver/qbittorrent"
     restart: always
+    ports:
+      - "${IP}:9004:9004"
+      - "${IP}:6881:6881"
+      - "${IP}:6881:6881/udp"
     volumes:
       - ${USERDIR}/docker/qbittorrent:/config
       - ${USERDIR}/Downloads/completed:/downloads
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-      - "9004:9004"
-      - "6881:6881"
-      - "6881:6881/udp"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=${TZ}
       - UMASK_SET=002
       - WEBUI_PORT=9004
+      - TZ=${TZ}
 
   sabnzbd:
     container_name: "sabnzbd"
     image: "linuxserver/sabnzbd"
     restart: always
+    ports:
+      - "${IP}:9005:8080"
     volumes:
       - ${USERDIR}/docker/sabnzbd:/config
       - ${USERDIR}/Downloads/completed:/downloads
       - ${USERDIR}/Downloads/incomplete:/incomplete-downloads
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-        - "9005:8080"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
 
-  # Retrievers
+# Managers
   #  Ombi allows you to accept Movie or TV Show requests from friends and family.
   ombi:
     container_name: ombi
     image: linuxserver/ombi
     restart: always
+    ports:
+      - "${IP}:9009:3579"
     volumes:
       - ${USERDIR}/docker/ombi:/config
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-      - "9009:3579"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -61,15 +61,15 @@ services:
     container_name: "radarr"
     image: "linuxserver/radarr"
     restart: always
+    ports:
+      - "${IP}:9006:7878"
     volumes:
       - ${USERDIR}/docker/radarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
       # TODO change media dir
       - ${USERDIR}/media/movies:/movies
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-      - "9006:7878"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -79,77 +79,78 @@ services:
     container_name: "sonarr"
     image: "linuxserver/sonarr"
     restart: always
+    ports:
+      - "${IP}:9007:8989"
     volumes:
       - ${USERDIR}/docker/sonarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
       # TODO change media dir
       - ${USERDIR}/media/tvshows:/tv
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-        - "9007:8989"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
 
-  # Media server
-  plex:
+# Media server
+  plex:  # todo
     container_name: "plex"
     image: plexinc/pms-docker
     restart: always
+    ports:
+      - "${IP}:32400:32400/tcp"
+      - "${IP}:3005:3005/tcp"
+      - "${IP}:8324:8324/tcp"
+      - "${IP}:32469:32469/tcp"
+      - "${IP}:1900:1900/udp"
+      - "${IP}:32410:32410/udp"
+      - "${IP}:32412-32414:32412-32414/udp"
     volumes:
+      # path to plex database
       - ${USERDIR}/docker/plexms:/config
       # temporary folder for transcoding.
       - ${USERDIR}/Downloads/plex_tmp:/transcode
+      # 
       # TODO Change media directory
       - /media/media:/media
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-      - "32400:32400/tcp"
-      - "3005:3005/tcp"
-      - "8324:8324/tcp"
-      - "32469:32469/tcp"
-      - "1900:1900/udp"
-      - "32410:32410/udp"
-      - "32412:32412/udp"
-      - "32413:32413/udp"
-      - "32414:32414/udp"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
-      - TZ=${TZ}
-      - HOSTNAME="Docker Plex"
+      - HOSTNAME="PlexServer"
       - PLEX_CLAIM="claim-x5RqoT5zRdk5yHfd5iBb"
       - PLEX_UID=${PUID}
       - PLEX_GID=${PGID}
-      - ADVERTISE_IP="http://192.168.1.122:32400/"
+      - ADVERTISE_IP="http://"${IP}":32400/"
+      - TZ=${TZ}
 
   # Monitoring Plex Usage
   tautulli:
     container_name: tautulli
     image: linuxserver/tautulli
     restart: always
+    ports:
+      - "${IP}:9008:8181"
     volumes:
       - ${USERDIR}/docker/tautulli/config:/config
       - ${USERDIR}/docker/tautulli/logs:/logs:ro
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-      - "9008:8181"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
 
+#Search
   # Hydra is a meta search for NZB indexers
   hydra:
     container_name: "hydra"
     image: "linuxserver/hydra"
     restart: always
+    ports:
+      - "${IP}:9010:5075"
     volumes:
       - ${USERDIR}/docker/hydra:/config
       - ${USERDIR}/Downloads:/downloads
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-      - "9010:5075"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -162,13 +163,13 @@ services:
     container_name: "jackett"
     image: "linuxserver/jackett"
     restart: always
+    ports:
+      - "${IP}:9011:9117"
     volumes:
       - ${USERDIR}/docker/jackett:/config
       - ${USERDIR}/Downloads/completed:/downloads
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared
-    ports:  # TODO add ipaddress hostip:hostport:containerport
-      - "9011:9117"
+      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
