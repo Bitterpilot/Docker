@@ -1,0 +1,267 @@
+{
+    "AppArmorProfile": "",
+    "Args": [],
+    "Config": {
+        "ArgsEscaped": true,
+        "AttachStderr": false,
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "Cmd": [
+            "/assets/wrapper"
+        ],
+        "Domainname": "bitterpilot.org",
+        "Entrypoint": null,
+        "Env": [
+            "PATH=/opt/gitlab/embedded/bin:/opt/gitlab/bin:/assets:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "TERM=xterm"
+        ],
+        "ExposedPorts": {
+            "22/tcp": {},
+            "443/tcp": {},
+            "80/tcp": {}
+        },
+        "Healthcheck": {
+            "Interval": 60000000000,
+            "Retries": 5,
+            "Test": [
+                "CMD-SHELL",
+                "/opt/gitlab/bin/gitlab-healthcheck --fail"
+            ],
+            "Timeout": 30000000000
+        },
+        "Hostname": "git",
+        "Image": "gitlab/gitlab-ce:latest",
+        "Labels": {},
+        "MacAddress": "02:42:a9:8d:56:ca",
+        "OnBuild": null,
+        "OpenStdin": true,
+        "StdinOnce": false,
+        "Tty": true,
+        "User": "",
+        "Volumes": {
+            "/etc/gitlab": {},
+            "/var/log/gitlab": {},
+            "/var/opt/gitlab": {}
+        },
+        "WorkingDir": ""
+    },
+    "Created": "2018-06-01T20:03:36.723113186Z",
+    "Driver": "overlay",
+    "ExecIDs": null,
+    "GraphDriver": {
+        "Data": {
+            "LowerDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/29b8d03f6dae458281395c941add70e51e41cbd66bd6a04a7489af8fb6f0853e/root",
+            "MergedDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/be60789c442d471938355975e4dbafefa7df29c26d1f869e754bc25e0b304fb9/merged",
+            "UpperDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/be60789c442d471938355975e4dbafefa7df29c26d1f869e754bc25e0b304fb9/upper",
+            "WorkDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/be60789c442d471938355975e4dbafefa7df29c26d1f869e754bc25e0b304fb9/work"
+        },
+        "Name": "overlay"
+    },
+    "HostConfig": {
+        "AutoRemove": false,
+        "Binds": [
+            "/share/Data/gitlab/logs:/var/log/gitlab",
+            "/share/Data/gitlab/data:/var/opt/gitlab",
+            "/share/Data/gitlab/config:/etc/gitlab"
+        ],
+        "BlkioDeviceReadBps": null,
+        "BlkioDeviceReadIOps": null,
+        "BlkioDeviceWriteBps": null,
+        "BlkioDeviceWriteIOps": null,
+        "BlkioWeight": 0,
+        "BlkioWeightDevice": null,
+        "CapAdd": null,
+        "CapDrop": null,
+        "Cgroup": "",
+        "CgroupParent": "",
+        "ConsoleSize": [
+            0,
+            0
+        ],
+        "ContainerIDFile": "",
+        "CpuCount": 0,
+        "CpuPercent": 0,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "CpuRealtimePeriod": 0,
+        "CpuRealtimeRuntime": 0,
+        "CpuShares": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "DeviceCgroupRules": null,
+        "Devices": [],
+        "DiskQuota": 0,
+        "Dns": [],
+        "DnsOptions": [],
+        "DnsSearch": [],
+        "ExtraHosts": null,
+        "GroupAdd": null,
+        "IOMaximumBandwidth": 0,
+        "IOMaximumIOps": 0,
+        "IpcMode": "",
+        "Isolation": "",
+        "KernelMemory": 0,
+        "Links": null,
+        "LogConfig": {
+            "Config": {},
+            "Type": "json-file"
+        },
+        "Memory": 0,
+        "MemoryReservation": 0,
+        "MemorySwap": 0,
+        "MemorySwappiness": null,
+        "NanoCpus": 0,
+        "NetworkMode": "qnet-static-eth1-6d6da6",
+        "OomKillDisable": false,
+        "OomScoreAdj": 0,
+        "PidMode": "",
+        "PidsLimit": 0,
+        "PortBindings": {},
+        "Privileged": false,
+        "PublishAllPorts": false,
+        "ReadonlyRootfs": false,
+        "RestartPolicy": {
+            "MaximumRetryCount": 0,
+            "Name": "always"
+        },
+        "Runtime": "runc",
+        "SecurityOpt": null,
+        "ShmSize": 67108864,
+        "UTSMode": "",
+        "Ulimits": null,
+        "UsernsMode": "",
+        "VolumeDriver": "",
+        "VolumesFrom": null
+    },
+    "HostnamePath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/723dce418f1f085cb8b738faeb613d7cc2287d8f903d3053034a2fb2af57863d/hostname",
+    "HostsPath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/723dce418f1f085cb8b738faeb613d7cc2287d8f903d3053034a2fb2af57863d/hosts",
+    "Id": "723dce418f1f085cb8b738faeb613d7cc2287d8f903d3053034a2fb2af57863d",
+    "Image": "sha256:a588654c706d17bc897e8d76419b6acab14c5cf4720aaea0dff56a524df385f9",
+    "LogPath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/723dce418f1f085cb8b738faeb613d7cc2287d8f903d3053034a2fb2af57863d/723dce418f1f085cb8b738faeb613d7cc2287d8f903d3053034a2fb2af57863d-json.log",
+    "MountLabel": "",
+    "Mounts": [
+        {
+            "Destination": "/var/log/gitlab",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/share/Data/gitlab/logs",
+            "Type": "bind"
+        },
+        {
+            "Destination": "/var/opt/gitlab",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/share/Data/gitlab/data",
+            "Type": "bind"
+        },
+        {
+            "Destination": "/etc/gitlab",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/share/Data/gitlab/config",
+            "Type": "bind"
+        }
+    ],
+    "Name": "/DevApp-Gitlab",
+    "NetworkSettings": {
+        "Bridge": "",
+        "EndpointID": "",
+        "Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "HairpinMode": false,
+        "IPAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "LinkLocalIPv6Address": "",
+        "LinkLocalIPv6PrefixLen": 0,
+        "MacAddress": "",
+        "Networks": {
+            "qnet-static-eth1-6d6da6": {
+                "Aliases": [
+                    "2834ca2b50d5",
+                    "290bf55d8ae0",
+                    "9e9f64e1afb5",
+                    "b13a01a9e4c3",
+                    "723dce418f1f"
+                ],
+                "DriverOpts": null,
+                "EndpointID": "5822ff256a7a7a7a5a7463f5bd3774bc0d6d8340fb2490441d0d92722bb7e264",
+                "Gateway": "192.168.1.1",
+                "GlobalIPv6Address": "",
+                "GlobalIPv6PrefixLen": 0,
+                "IPAMConfig": {
+                    "IPv4Address": "192.168.1.5"
+                },
+                "IPAddress": "192.168.1.5",
+                "IPPrefixLen": 23,
+                "IPv6Gateway": "",
+                "Links": null,
+                "MacAddress": "02:42:a9:8d:56:ca",
+                "NetworkID": "798b0619b5a46342f2439781f50683c623ca04606682d5b4c71e1fe92569ed04"
+            }
+        },
+        "Ports": {},
+        "SandboxID": "cd799275eb6ef8265dc5b3ded9c0b4cfa053c6c8c555665695583c86f9472ed8",
+        "SandboxKey": "/var/run/docker/netns/cd799275eb6e",
+        "SecondaryIPAddresses": null,
+        "SecondaryIPv6Addresses": null
+    },
+    "Path": "/assets/wrapper",
+    "Platform": "linux",
+    "ProcessLabel": "",
+    "ResolvConfPath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/723dce418f1f085cb8b738faeb613d7cc2287d8f903d3053034a2fb2af57863d/resolv.conf",
+    "RestartCount": 0,
+    "State": {
+        "Dead": false,
+        "Error": "",
+        "ExitCode": 0,
+        "FinishedAt": "0001-01-01T00:00:00Z",
+        "Health": {
+            "FailingStreak": 0,
+            "Log": [
+                {
+                    "End": "2018-06-02T20:58:44.702186837+08:00",
+                    "ExitCode": 0,
+                    "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100 38193    0 38193    0     0   308k      0 --:--:-- --:--:-- --:--:--  308k\n<!DOCTYPE html>\n<html class=\"\" lang=\"en\">\n<head prefix=\"og: http://ogp.me/ns#\">\n<meta charset=\"utf-8\">\n<meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\">\n<meta content=\"object\" property=\"og:type\">\n<meta content=\"GitLab\" property=\"og:site_name\">\n<meta content=\"Help\" property=\"og:title\">\n<meta content=\"GitLab Community Edition\" property=\"og:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"og:image\">\n<meta content=\"64\" property=\"og:image:width\">\n<meta content=\"64\" property=\"og:image:height\">\n<meta content=\"https://localhost/help\" property=\"og:url\">\n<meta content=\"summary\" property=\"twitter:card\">\n<meta content=\"Help\" property=\"twitter:title\">\n<meta content=\"GitLab Community Edition\" property=\"twitter:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"twitter:image\">\n\n<title>Help · GitLab</title>\n<meta content=\"GitLab Community Edition\" name=\"description\">\n<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/favicon-075eba76312e8421991a0c1f89a89ee81678bcde72319dd3e8047e2a47cd3a42.ico\" id=\"favicon\" />\n<link rel=\"stylesheet\" media=\"all\" href=\"/assets/application-ea46287fc2287180b7503b4860924902a8fd05e36cf33b8f12f43950021a5075.css\" />\n<link rel=\"stylesheet\" media=\"print\" href=\"/assets/print-74b3d49adeaada27337e759b75a34af7cf3d80051de91d60d40570f5a382e132.css\" />\n\n\n<script>\n//<![CDATA[\nwindow.gon={};gon.api_version=\"v4\";gon.default_avatar_url=\"https://git.bitterpilot.org/assets/no_avatar-849f9c04a3a0d0cea2424ae97b27447dc64a7dbfae83c036c45b403392f0e8ba.png\";gon.max_file_size=10;gon.asset_host=null;gon.webpack_public_path=\"/assets/webpack/\";gon.relative_url_root=\"\";gon.shortcuts_path=\"/help/shortcuts\";gon.user_color_scheme=\"white\";gon.gitlab_url=\"https://git.bitterpilot.org\";gon.revision=\"564c342\";gon.gitlab_logo=\"/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\";gon.sprite_icons=\"/assets/icons-228b3b53d9a397a1ac64e40bd07152a8a225245f6e754e9ce7450c1dee53e659.svg\";gon.sprite_file_icons=\"/assets/file_icons-7262fc6897e02f1ceaf8de43dc33afa5e4f9a2067f4f68ef77dcc87946575e9e.svg\";gon.emoji_sprites_css_path=\"/assets/emoji_sprites-289eccffb1183c188b630297431be837765d9ff4aed6130cf738586fb307c170.css\";gon.test_env=false;gon.suggested_label_colors=[\"#0033CC\",\"#428BCA\",\"#44AD8E\",\"#A8D695\",\"#5CB85C\",\"#69D100\",\"#004E00\",\"#34495E\",\"#7F8C8D\",\"#A295D6\",\"#5843AD\",\"#8E44AD\",\"#FFECDB\",\"#AD4363\",\"#D10069\",\"#CC0033\",\"#FF0000\",\"#D9534F\",\"#D1D100\",\"#F0AD4E\",\"#AD8D43\"];\n//]]>\n</script>\n\n\n<script src=\"/assets/webpack/runtime.b27317f3.bundle.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/main.c0b9dda8.chunk.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/pages.help.index.23a469ad.chunk.js\" defer=\"defer\"></script>\n\n<meta name=\"csrf-param\" content=\"authenticity_token\" />\n<meta name=\"csrf-token\" content=\"MhjYbhlpwE5/jKg93jX7iSFxl6rDtKd/s6/NBH9PDwlnF4StOfAZ2wHsUryGMFCmVraCEKL3G4zUYIW0I964yw==\" />\n<meta content=\"origin-when-cross-origin\" name=\"referrer\">\n<meta content=\"width=device-width, initial-scale=1, maximum-scale=1\" name=\"viewport\">\n<meta content=\"#474D57\" name=\"theme-color\">\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-5a9cee0e8a51212e70b90c87c12f382c428870c0ff67d1eb034d884b78d2dae7.png\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-a6eec6aeb9da138e507593b464fdac213047e49d3093fc30e90d9a995df83ba3.png\" sizes=\"76x76\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-retina-72e2aadf86513a56e050e7f0f2355deaa19cc17ed97bbe5147847f2748e5a3e3.png\" sizes=\"120x120\" />\n<link rel=\"apple-touch-ico...",
+                    "Start": "2018-06-02T20:58:44.396897011+08:00"
+                },
+                {
+                    "End": "2018-06-02T20:59:45.158779724+08:00",
+                    "ExitCode": 0,
+                    "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>\n<html class=\"\" lang=\"en\">\n<head prefix=\"og: http://ogp.me/ns#\">\n<meta charset=\"utf-8\">\n<meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\">\n<meta content=\"object\" property=\"og:type\">\n<meta content=\"GitLab\" property=\"og:site_name\">\n<meta content=\"Help\" property=\"og:title\">\n<meta content=\"GitLab Community Edition\" property=\"og:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"og:image\">\n<meta content=\"64\" property=\"og:image:width\">\n<meta content=\"64\" property=\"og:image:height\">\n<meta content=\"https://localhost/help\" property=\"og:url\">\n<meta content=\"summary\" property=\"twitter:card\">\n<meta content=\"Help\" property=\"twitter:title\">\n<meta content=\"GitLab Community Edition\" property=\"twitter:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"twitter:image\">\n\n<title>Help · GitLab</title>\n<meta content=\"GitLab Community Edition\" name=\"description\">\n<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/favicon-075eba76312e8421991a0c1f89a89ee81678bcde72319dd3e8047e2a47cd3a42.ico\" id=\"favicon\" />\n<link rel=\"stylesheet\" media=\"all\" href=\"/assets/application-ea46287fc2287180b7503b4860924902a8fd05e36cf33b8f12f43950021a5075.css\" />\n<link rel=\"stylesheet\" media=\"print\" href=\"/assets/print-74b3d49adeaada27337e759b75a34af7cf3d80051de91d60d40570f5a382e132.css\" />\n\n\n<script>\n//<![CDATA[\nwindow.gon={};gon.api_version=\"v4\";gon.default_avatar_url=\"https://git.bitterpilot.org/assets/no_avatar-849f9c04a3a0d0cea2424ae97b27447dc64a7dbfae83c036c45b403392f0e8ba.png\";gon.max_file_size=10;gon.asset_host=null;gon.webpack_public_path=\"/assets/webpack/\";gon.relative_url_root=\"\";gon.shortcuts_path=\"/help/shortcuts\";gon.user_color_scheme=\"white\";gon.gitlab_url=\"https://git.bitterpilot.org\";gon.revision=\"564c342\";gon.gitlab_logo=\"/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\";gon.sprite_icons=\"/assets/icons-228b3b53d9a397a1ac64e40bd07152a8a225245f6e754e9ce7450c1dee53e659.svg\";gon.sprite_file_icons=\"/assets/file_icons-7262fc6897e02f1ceaf8de43dc33afa5e4f9a2067f4f68ef77dcc87946575e9e.svg\";gon.emoji_sprites_css_path=\"/assets/emoji_sprites-289eccffb1183c188b630297431be837765d9ff4aed6130cf738586fb307c170.css\";gon.test_env=false;gon.suggested_label_colors=[\"#0033CC\",\"#428BCA\",\"#44AD8E\",\"#A8D695\",\"#5CB85C\",\"#69D100\",\"#004E00\",\"#34495E\",\"#7F8C8D\",\"#A295D6\",\"#5843AD\",\"#8E44AD\",\"#FFECDB\",\"#AD4363\",\"#D10069\",\"#CC0033\",\"#FF0000\",\"#D9534F\",\"#D1D100\",\"#F0AD4E\",\"#AD8D43\"];\n//]]>\n</script>\n\n\n<script src=\"/assets/webpack/runtime.b27317f3.bundle.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/main.c0b9dda8.chunk.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/pages.help.index.23a469ad.chunk.js\" defer=\"defer\"></script>\n\n<meta name=\"csrf-param\" content=\"authenticity_token\" />\n<meta name=\"csrf-token\" content=\"/Q/xK0ydxo7RMruxOzlDe59GGCEXiBdsX5PhLUwqNSjxnEnpszL135jkYi3MaNsI5q93SQCu69XICI/V8r52WA==\" />\n<meta content=\"origin-when-cross-origin\" name=\"referrer\">\n<meta content=\"width=device-width, initial-scale=1, maximum-scale=1\" name=\"viewport\">\n<meta content=\"#474D57\" name=\"theme-color\">\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-5a9cee0e8a51212e70b90c87c12f382c428870c0ff67d1eb034d884b78d2dae7.png\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-a6eec6aeb9da138e507593b464fdac213047e49d3093fc30e90d9a995df83ba3.png\" sizes=\"76x76\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-retina-72e2aadf86513a56e050e7f0f2355deaa19cc17ed97bbe5147847f2748e5a3e3.png\" sizes=\"120x120\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-retina-8ebe416f5313483d9c1b...",
+                    "Start": "2018-06-02T20:59:44.815356981+08:00"
+                },
+                {
+                    "End": "2018-06-02T21:00:45.536010576+08:00",
+                    "ExitCode": 0,
+                    "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>\n<html class=\"\" lang=\"en\">\n<head prefix=\"og: http://ogp.me/ns#\">\n<meta charset=\"utf-8\">\n<meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\">\n<meta content=\"object\" property=\"og:type\">\n<meta content=\"GitLab\" property=\"og:site_name\">\n<meta content=\"Help\" property=\"og:title\">\n<meta content=\"GitLab Community Edition\" property=\"og:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"og:image\">\n<meta content=\"64\" property=\"og:image:width\">\n<meta content=\"64\" property=\"og:image:height\">\n<meta content=\"https://localhost/help\" property=\"og:url\">\n<meta content=\"summary\" property=\"twitter:card\">\n<meta content=\"Help\" property=\"twitter:title\">\n<meta content=\"GitLab Community Edition\" property=\"twitter:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"twitter:image\">\n\n<title>Help · GitLab</title>\n<meta content=\"GitLab Community Edition\" name=\"description\">\n<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/favicon-075eba76312e8421991a0c1f89a89ee81678bcde72319dd3e8047e2a47cd3a42.ico\" id=\"favicon\" />\n<link rel=\"stylesheet\" media=\"all\" href=\"/assets/application-ea46287fc2287180b7503b4860924902a8fd05e36cf33b8f12f43950021a5075.css\" />\n<link rel=\"stylesheet\" media=\"print\" href=\"/assets/print-74b3d49adeaada27337e759b75a34af7cf3d80051de91d60d40570f5a382e132.css\" />\n\n\n<script>\n//<![CDATA[\nwindow.gon={};gon.api_version=\"v4\";gon.default_avatar_url=\"https://git.bitterpilot.org/assets/no_avatar-849f9c04a3a0d0cea2424ae97b27447dc64a7dbfae83c036c45b403392f0e8ba.png\";gon.max_file_size=10;gon.asset_host=null;gon.webpack_public_path=\"/assets/webpack/\";gon.relative_url_root=\"\";gon.shortcuts_path=\"/help/shortcuts\";gon.user_color_scheme=\"white\";gon.gitlab_url=\"https://git.bitterpilot.org\";gon.revision=\"564c342\";gon.gitlab_logo=\"/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\";gon.sprite_icons=\"/assets/icons-228b3b53d9a397a1ac64e40bd07152a8a225245f6e754e9ce7450c1dee53e659.svg\";gon.sprite_file_icons=\"/assets/file_icons-7262fc6897e02f1ceaf8de43dc33afa5e4f9a2067f4f68ef77dcc87946575e9e.svg\";gon.emoji_sprites_css_path=\"/assets/emoji_sprites-289eccffb1183c188b630297431be837765d9ff4aed6130cf738586fb307c170.css\";gon.test_env=false;gon.suggested_label_colors=[\"#0033CC\",\"#428BCA\",\"#44AD8E\",\"#A8D695\",\"#5CB85C\",\"#69D100\",\"#004E00\",\"#34495E\",\"#7F8C8D\",\"#A295D6\",\"#5843AD\",\"#8E44AD\",\"#FFECDB\",\"#AD4363\",\"#D10069\",\"#CC0033\",\"#FF0000\",\"#D9534F\",\"#D1D100\",\"#F0AD4E\",\"#AD8D43\"];\n//]]>\n</script>\n\n\n<script src=\"/assets/webpack/runtime.b27317f3.bundle.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/main.c0b9dda8.chunk.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/pages.help.index.23a469ad.chunk.js\" defer=\"defer\"></script>\n\n<meta name=\"csrf-param\" content=\"authenticity_token\" />\n<meta name=\"csrf-token\" content=\"5hBPg94hxPSnPr8Vdl4cQImpVgzdiCV9BZNuVykGO5ly9+8dWAchbK+2rXAnIOkVjS491/vx16ifY7dP2MytUw==\" />\n<meta content=\"origin-when-cross-origin\" name=\"referrer\">\n<meta content=\"width=device-width, initial-scale=1, maximum-scale=1\" name=\"viewport\">\n<meta content=\"#474D57\" name=\"theme-color\">\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-5a9cee0e8a51212e70b90c87c12f382c428870c0ff67d1eb034d884b78d2dae7.png\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-a6eec6aeb9da138e507593b464fdac213047e49d3093fc30e90d9a995df83ba3.png\" sizes=\"76x76\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-retina-72e2aadf86513a56e050e7f0f2355deaa19cc17ed97bbe5147847f2748e5a3e3.png\" sizes=\"120x120\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-retina-8ebe416f5313483d9c1b...",
+                    "Start": "2018-06-02T21:00:45.351220636+08:00"
+                },
+                {
+                    "End": "2018-06-02T21:01:45.824364541+08:00",
+                    "ExitCode": 0,
+                    "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100 38193    0 38193    0     0   316k      0 --:--:-- --:--:-- --:--:--  316k\n<!DOCTYPE html>\n<html class=\"\" lang=\"en\">\n<head prefix=\"og: http://ogp.me/ns#\">\n<meta charset=\"utf-8\">\n<meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\">\n<meta content=\"object\" property=\"og:type\">\n<meta content=\"GitLab\" property=\"og:site_name\">\n<meta content=\"Help\" property=\"og:title\">\n<meta content=\"GitLab Community Edition\" property=\"og:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"og:image\">\n<meta content=\"64\" property=\"og:image:width\">\n<meta content=\"64\" property=\"og:image:height\">\n<meta content=\"https://localhost/help\" property=\"og:url\">\n<meta content=\"summary\" property=\"twitter:card\">\n<meta content=\"Help\" property=\"twitter:title\">\n<meta content=\"GitLab Community Edition\" property=\"twitter:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"twitter:image\">\n\n<title>Help · GitLab</title>\n<meta content=\"GitLab Community Edition\" name=\"description\">\n<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/favicon-075eba76312e8421991a0c1f89a89ee81678bcde72319dd3e8047e2a47cd3a42.ico\" id=\"favicon\" />\n<link rel=\"stylesheet\" media=\"all\" href=\"/assets/application-ea46287fc2287180b7503b4860924902a8fd05e36cf33b8f12f43950021a5075.css\" />\n<link rel=\"stylesheet\" media=\"print\" href=\"/assets/print-74b3d49adeaada27337e759b75a34af7cf3d80051de91d60d40570f5a382e132.css\" />\n\n\n<script>\n//<![CDATA[\nwindow.gon={};gon.api_version=\"v4\";gon.default_avatar_url=\"https://git.bitterpilot.org/assets/no_avatar-849f9c04a3a0d0cea2424ae97b27447dc64a7dbfae83c036c45b403392f0e8ba.png\";gon.max_file_size=10;gon.asset_host=null;gon.webpack_public_path=\"/assets/webpack/\";gon.relative_url_root=\"\";gon.shortcuts_path=\"/help/shortcuts\";gon.user_color_scheme=\"white\";gon.gitlab_url=\"https://git.bitterpilot.org\";gon.revision=\"564c342\";gon.gitlab_logo=\"/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\";gon.sprite_icons=\"/assets/icons-228b3b53d9a397a1ac64e40bd07152a8a225245f6e754e9ce7450c1dee53e659.svg\";gon.sprite_file_icons=\"/assets/file_icons-7262fc6897e02f1ceaf8de43dc33afa5e4f9a2067f4f68ef77dcc87946575e9e.svg\";gon.emoji_sprites_css_path=\"/assets/emoji_sprites-289eccffb1183c188b630297431be837765d9ff4aed6130cf738586fb307c170.css\";gon.test_env=false;gon.suggested_label_colors=[\"#0033CC\",\"#428BCA\",\"#44AD8E\",\"#A8D695\",\"#5CB85C\",\"#69D100\",\"#004E00\",\"#34495E\",\"#7F8C8D\",\"#A295D6\",\"#5843AD\",\"#8E44AD\",\"#FFECDB\",\"#AD4363\",\"#D10069\",\"#CC0033\",\"#FF0000\",\"#D9534F\",\"#D1D100\",\"#F0AD4E\",\"#AD8D43\"];\n//]]>\n</script>\n\n\n<script src=\"/assets/webpack/runtime.b27317f3.bundle.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/main.c0b9dda8.chunk.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/pages.help.index.23a469ad.chunk.js\" defer=\"defer\"></script>\n\n<meta name=\"csrf-param\" content=\"authenticity_token\" />\n<meta name=\"csrf-token\" content=\"LOIKjA9BSQbsQR8uV32G9wfaAMAHZ8DwYXnd3Ac+bvc+0NpWmHFhpvUnhwjAKnwrrycEIpLKZ1fzS2VgseLt+g==\" />\n<meta content=\"origin-when-cross-origin\" name=\"referrer\">\n<meta content=\"width=device-width, initial-scale=1, maximum-scale=1\" name=\"viewport\">\n<meta content=\"#474D57\" name=\"theme-color\">\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-5a9cee0e8a51212e70b90c87c12f382c428870c0ff67d1eb034d884b78d2dae7.png\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-a6eec6aeb9da138e507593b464fdac213047e49d3093fc30e90d9a995df83ba3.png\" sizes=\"76x76\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-retina-72e2aadf86513a56e050e7f0f2355deaa19cc17ed97bbe5147847f2748e5a3e3.png\" sizes=\"120x120\" />\n<link rel=\"apple-touch-ico...",
+                    "Start": "2018-06-02T21:01:45.596876212+08:00"
+                },
+                {
+                    "End": "2018-06-02T21:02:46.162639531+08:00",
+                    "ExitCode": 0,
+                    "Output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>\n<html class=\"\" lang=\"en\">\n<head prefix=\"og: http://ogp.me/ns#\">\n<meta charset=\"utf-8\">\n<meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\">\n<meta content=\"object\" property=\"og:type\">\n<meta content=\"GitLab\" property=\"og:site_name\">\n<meta content=\"Help\" property=\"og:title\">\n<meta content=\"GitLab Community Edition\" property=\"og:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"og:image\">\n<meta content=\"64\" property=\"og:image:width\">\n<meta content=\"64\" property=\"og:image:height\">\n<meta content=\"https://localhost/help\" property=\"og:url\">\n<meta content=\"summary\" property=\"twitter:card\">\n<meta content=\"Help\" property=\"twitter:title\">\n<meta content=\"GitLab Community Edition\" property=\"twitter:description\">\n<meta content=\"https://localhost/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\" property=\"twitter:image\">\n\n<title>Help · GitLab</title>\n<meta content=\"GitLab Community Edition\" name=\"description\">\n<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/favicon-075eba76312e8421991a0c1f89a89ee81678bcde72319dd3e8047e2a47cd3a42.ico\" id=\"favicon\" />\n<link rel=\"stylesheet\" media=\"all\" href=\"/assets/application-ea46287fc2287180b7503b4860924902a8fd05e36cf33b8f12f43950021a5075.css\" />\n<link rel=\"stylesheet\" media=\"print\" href=\"/assets/print-74b3d49adeaada27337e759b75a34af7cf3d80051de91d60d40570f5a382e132.css\" />\n\n\n<script>\n//<![CDATA[\nwindow.gon={};gon.api_version=\"v4\";gon.default_avatar_url=\"https://git.bitterpilot.org/assets/no_avatar-849f9c04a3a0d0cea2424ae97b27447dc64a7dbfae83c036c45b403392f0e8ba.png\";gon.max_file_size=10;gon.asset_host=null;gon.webpack_public_path=\"/assets/webpack/\";gon.relative_url_root=\"\";gon.shortcuts_path=\"/help/shortcuts\";gon.user_color_scheme=\"white\";gon.gitlab_url=\"https://git.bitterpilot.org\";gon.revision=\"564c342\";gon.gitlab_logo=\"/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png\";gon.sprite_icons=\"/assets/icons-228b3b53d9a397a1ac64e40bd07152a8a225245f6e754e9ce7450c1dee53e659.svg\";gon.sprite_file_icons=\"/assets/file_icons-7262fc6897e02f1ceaf8de43dc33afa5e4f9a2067f4f68ef77dcc87946575e9e.svg\";gon.emoji_sprites_css_path=\"/assets/emoji_sprites-289eccffb1183c188b630297431be837765d9ff4aed6130cf738586fb307c170.css\";gon.test_env=false;gon.suggested_label_colors=[\"#0033CC\",\"#428BCA\",\"#44AD8E\",\"#A8D695\",\"#5CB85C\",\"#69D100\",\"#004E00\",\"#34495E\",\"#7F8C8D\",\"#A295D6\",\"#5843AD\",\"#8E44AD\",\"#FFECDB\",\"#AD4363\",\"#D10069\",\"#CC0033\",\"#FF0000\",\"#D9534F\",\"#D1D100\",\"#F0AD4E\",\"#AD8D43\"];\n//]]>\n</script>\n\n\n<script src=\"/assets/webpack/runtime.b27317f3.bundle.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/main.c0b9dda8.chunk.js\" defer=\"defer\"></script>\n<script src=\"/assets/webpack/pages.help.index.23a469ad.chunk.js\" defer=\"defer\"></script>\n\n<meta name=\"csrf-param\" content=\"authenticity_token\" />\n<meta name=\"csrf-token\" content=\"xnn5BW5iqxFwFYlW9pRZDW3MaKIjRupns6OBm856RndgaIi0r33O7zKulW+KY2JNfuGDh6fm2yOxVU9ZADjM+Q==\" />\n<meta content=\"origin-when-cross-origin\" name=\"referrer\">\n<meta content=\"width=device-width, initial-scale=1, maximum-scale=1\" name=\"viewport\">\n<meta content=\"#474D57\" name=\"theme-color\">\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-5a9cee0e8a51212e70b90c87c12f382c428870c0ff67d1eb034d884b78d2dae7.png\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-a6eec6aeb9da138e507593b464fdac213047e49d3093fc30e90d9a995df83ba3.png\" sizes=\"76x76\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-iphone-retina-72e2aadf86513a56e050e7f0f2355deaa19cc17ed97bbe5147847f2748e5a3e3.png\" sizes=\"120x120\" />\n<link rel=\"apple-touch-icon\" type=\"image/x-icon\" href=\"/assets/touch-icon-ipad-retina-8ebe416f5313483d9c1b...",
+                    "Start": "2018-06-02T21:02:45.922207285+08:00"
+                }
+            ],
+            "Status": "healthy"
+        },
+        "OOMKilled": false,
+        "Paused": false,
+        "Pid": 29547,
+        "Restarting": false,
+        "Running": true,
+        "StartedAt": "2018-06-01T20:03:38.214935441Z",
+        "Status": "running"
+    }
+}

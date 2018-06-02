@@ -1,6 +1,8 @@
 version: "3.6"
 services:
 # Support Containers
+
+# container managment
   portainer:
     container_name: portainer
     image: portainer/portainer
@@ -13,20 +15,6 @@ services:
       - ${USERDIR}/docker/portainer/data:/data
       - ${USERDIR}/docker/shared:/shared
     environment:
-      - TZ=${TZ}
-
-  organizr:
-    container_name: organizr
-    image: lsiocommunity/organizr
-    restart: always
-    ports: # TODO add ipaddress hostip:hostport:containerport
-      - "${IP}:80:80"
-    volumes:
-      - ${USERDIR}/docker/organizr:/config
-      - ${USERDIR}/docker/shared:/shared
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
       - TZ=${TZ}
 
   # Watchtower monitors your Docker containers. If their images in the Docker Store
@@ -44,3 +32,51 @@ services:
     # --interval 30 for checking every 30 seconds. If you want weekly, then use
     # 0 0 23 * * SUN for every update at 11 pm on Sundays.
     command: --schedule "0 0 4 * * *" --cleanup
+
+# 
+  organizr:
+    container_name: organizr
+    image: lsiocommunity/organizr
+    restart: always
+    ports: # TODO add ipaddress hostip:hostport:containerport
+      - "${IP}:80:80"
+    volumes:
+      - ${USERDIR}/docker/organizr:/config
+      - ${USERDIR}/docker/shared:/shared
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+  bind:
+    container_name: BindDNS
+    image: sameersbn/bind
+    restart: always
+    ports:
+      - "${IP}:10000:10000
+      - "${IP}:10022:22
+      - "${IP}:53:53
+      - "${IP}:53:53/udp
+    volumes:
+      - /share/Data/DNS/bind:/data/bind/etc
+      - ${USERDIR}/docker/shared:/shared
+    environment:
+      - BIND_USER=bind
+      - BIND_VERSION=1:9.9.5
+      - DATA_DIR=/data
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - WEBMIN_VERSION=1.8
+      - ROOT_PASSWORD=${ROOT_PASSWORD}
+
+  steamcache:
+    container_name: SteamCache
+    image: steamcache/steamcache
+    restart: always
+    hostname: SteamCache
+    ports:
+      - must have 192.168.1.4
+    volumes:
+      - /share/Data/SteamCache logs:/data/logs
+      - SteamCache:/var/www
+      - /share/Steam Cache:/data/cache
+      - ${USERDIR}/docker/shared:/shared

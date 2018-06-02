@@ -1,0 +1,269 @@
+{
+    "AppArmorProfile": "",
+    "Args": [
+        "/usr/sbin/named"
+    ],
+    "Config": {
+        "AttachStderr": false,
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "Cmd": [
+            "/usr/sbin/named"
+        ],
+        "Domainname": "",
+        "Entrypoint": [
+            "/sbin/entrypoint.sh"
+        ],
+        "Env": [
+            "BIND_USER=bind",
+            "BIND_VERSION=1:9.9.5",
+            "DATA_DIR=/data",
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+            "WEBMIN_VERSION=1.8",
+            "ROOT_PASSWORD=bitterpilot"
+        ],
+        "ExposedPorts": {
+            "10000/tcp": {},
+            "22/tcp": {},
+            "53/tcp": {},
+            "53/udp": {}
+        },
+        "Hostname": "Support-BindDNS",
+        "Image": "sameersbn/bind:latest",
+        "Labels": {
+            "com.qnap.qcs.network.mode": "nat"
+        },
+        "OnBuild": null,
+        "OpenStdin": true,
+        "StdinOnce": false,
+        "Tty": true,
+        "User": "",
+        "Volumes": {
+            "/data/bind/etc": {}
+        },
+        "WorkingDir": ""
+    },
+    "Created": "2018-03-10T09:30:16.037475417Z",
+    "Driver": "overlay",
+    "ExecIDs": null,
+    "GraphDriver": {
+        "Data": {
+            "LowerDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/103fada617af22bfe22ecdc2aac50caf29bbff18c1842f8a1c153e2ae1b49e20/root",
+            "MergedDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/84c295b158431e02f234d35dae549066c05b5cde0b1eada5e075b04e73b7cfcc/merged",
+            "UpperDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/84c295b158431e02f234d35dae549066c05b5cde0b1eada5e075b04e73b7cfcc/upper",
+            "WorkDir": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/overlay/84c295b158431e02f234d35dae549066c05b5cde0b1eada5e075b04e73b7cfcc/work"
+        },
+        "Name": "overlay"
+    },
+    "HostConfig": {
+        "AutoRemove": false,
+        "Binds": [
+            "/share/Data/DNS/bind:/data/bind/etc"
+        ],
+        "BlkioDeviceReadBps": null,
+        "BlkioDeviceReadIOps": null,
+        "BlkioDeviceWriteBps": null,
+        "BlkioDeviceWriteIOps": null,
+        "BlkioWeight": 0,
+        "BlkioWeightDevice": null,
+        "CapAdd": null,
+        "CapDrop": null,
+        "Cgroup": "",
+        "CgroupParent": "",
+        "ConsoleSize": [
+            0,
+            0
+        ],
+        "ContainerIDFile": "",
+        "CpuCount": 0,
+        "CpuPercent": 0,
+        "CpuPeriod": 0,
+        "CpuQuota": 0,
+        "CpuRealtimePeriod": 0,
+        "CpuRealtimeRuntime": 0,
+        "CpuShares": 0,
+        "CpusetCpus": "",
+        "CpusetMems": "",
+        "DeviceCgroupRules": null,
+        "Devices": [],
+        "DiskQuota": 0,
+        "Dns": [],
+        "DnsOptions": [],
+        "DnsSearch": [],
+        "ExtraHosts": null,
+        "GroupAdd": null,
+        "IOMaximumBandwidth": 0,
+        "IOMaximumIOps": 0,
+        "IpcMode": "",
+        "Isolation": "",
+        "KernelMemory": 0,
+        "Links": null,
+        "LogConfig": {
+            "Config": {},
+            "Type": "json-file"
+        },
+        "Memory": 0,
+        "MemoryReservation": 0,
+        "MemorySwap": 0,
+        "MemorySwappiness": null,
+        "NanoCpus": 0,
+        "NetworkMode": "bridge",
+        "OomKillDisable": false,
+        "OomScoreAdj": 0,
+        "PidMode": "",
+        "PidsLimit": 0,
+        "PortBindings": {
+            "10000/tcp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "10000"
+                }
+            ],
+            "22/tcp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "10022"
+                }
+            ],
+            "53/tcp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "53"
+                }
+            ],
+            "53/udp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "53"
+                }
+            ]
+        },
+        "Privileged": false,
+        "PublishAllPorts": true,
+        "ReadonlyRootfs": false,
+        "RestartPolicy": {
+            "MaximumRetryCount": 0,
+            "Name": "always"
+        },
+        "Runtime": "runc",
+        "SecurityOpt": null,
+        "ShmSize": 67108864,
+        "UTSMode": "",
+        "Ulimits": null,
+        "UsernsMode": "",
+        "VolumeDriver": "",
+        "VolumesFrom": []
+    },
+    "HostnamePath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/fbe6ae4f27943ec74c98d6ae264476df578de3b338f21197e1d96295a9d16237/hostname",
+    "HostsPath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/fbe6ae4f27943ec74c98d6ae264476df578de3b338f21197e1d96295a9d16237/hosts",
+    "Id": "fbe6ae4f27943ec74c98d6ae264476df578de3b338f21197e1d96295a9d16237",
+    "Image": "sha256:dca29d8e4c60b129e7e66fa62ee1e14f21395e8d5ae7092ad8e91454a628f45e",
+    "LogPath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/fbe6ae4f27943ec74c98d6ae264476df578de3b338f21197e1d96295a9d16237/fbe6ae4f27943ec74c98d6ae264476df578de3b338f21197e1d96295a9d16237-json.log",
+    "MountLabel": "",
+    "Mounts": [
+        {
+            "Destination": "/data/bind/etc",
+            "Mode": "",
+            "Propagation": "rprivate",
+            "RW": true,
+            "Source": "/share/Data/DNS/bind",
+            "Type": "bind"
+        }
+    ],
+    "Name": "/Support-BindDNS",
+    "NetworkSettings": {
+        "Bridge": "lxcbr0",
+        "EndpointID": "a77b6ca6e9c8937301b1b932ebc088ca2a95dabd0f173b2bd0e716cd2d3c8a0d",
+        "Gateway": "10.0.3.1",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "HairpinMode": false,
+        "IPAddress": "10.0.3.3",
+        "IPPrefixLen": 24,
+        "IPv6Gateway": "",
+        "LinkLocalIPv6Address": "",
+        "LinkLocalIPv6PrefixLen": 0,
+        "MacAddress": "02:42:0a:00:03:03",
+        "Networks": {
+            "bridge": {
+                "Aliases": null,
+                "DriverOpts": null,
+                "EndpointID": "a77b6ca6e9c8937301b1b932ebc088ca2a95dabd0f173b2bd0e716cd2d3c8a0d",
+                "Gateway": "10.0.3.1",
+                "GlobalIPv6Address": "",
+                "GlobalIPv6PrefixLen": 0,
+                "IPAMConfig": {},
+                "IPAddress": "10.0.3.3",
+                "IPPrefixLen": 24,
+                "IPv6Gateway": "",
+                "Links": null,
+                "MacAddress": "02:42:0a:00:03:03",
+                "NetworkID": "99ec2ece3cdaa3fa01137ff1c810dae9f72a0d96b7d96335f80f8c9492c26d1f"
+            }
+        },
+        "Ports": {
+            "10000/tcp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "10000"
+                }
+            ],
+            "22/tcp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "10022"
+                }
+            ],
+            "53/tcp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "53"
+                }
+            ],
+            "53/udp": [
+                {
+                    "HostIp": "192.168.1.3",
+                    "HostPort": "53"
+                }
+            ]
+        },
+        "SandboxID": "8d5b14662d1e2049f9298e1521d81adce014919924ddd2bf5cc9ecf95a5bd93f",
+        "SandboxKey": "/var/run/docker/netns/8d5b14662d1e",
+        "SecondaryIPAddresses": null,
+        "SecondaryIPv6Addresses": null
+    },
+    "Path": "/sbin/entrypoint.sh",
+    "Platform": "linux",
+    "Portainer": {
+        "ResourceControl": {
+            "Id": 144,
+            "ResourceId": "fbe6ae4f27943ec74c98d6ae264476df578de3b338f21197e1d96295a9d16237",
+            "SubResourceIds": [],
+            "Type": 1,
+            "AdministratorsOnly": false,
+            "UserAccesses": [
+                {
+                    "UserId": 2,
+                    "AccessLevel": 1
+                }
+            ],
+            "TeamAccesses": []
+        }
+    },
+    "ProcessLabel": "",
+    "ResolvConfPath": "/share/CACHEDEV1_DATA/Container/container-station-data/lib/docker/containers/fbe6ae4f27943ec74c98d6ae264476df578de3b338f21197e1d96295a9d16237/resolv.conf",
+    "RestartCount": 0,
+    "State": {
+        "Dead": false,
+        "Error": "",
+        "ExitCode": 0,
+        "FinishedAt": "2018-06-01T13:16:26.930558338Z",
+        "OOMKilled": false,
+        "Paused": false,
+        "Pid": 15043,
+        "Restarting": false,
+        "Running": true,
+        "StartedAt": "2018-06-01T13:16:50.5412565Z",
+        "Status": "running"
+    }
+}

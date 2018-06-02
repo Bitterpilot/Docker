@@ -1,5 +1,8 @@
 version: "3.6"
 services:
+  gitlab:
+  must have 192.168.1.5
+
   mariadb:
     container_name: "mariadb"
     image: "linuxserver/mariadb"
@@ -13,7 +16,7 @@ services:
     volumes:
         - ${USERDIR}/docker/mariadb:/config
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - ROOT_PASSWORD=${ROOT_PASSWORD}
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
@@ -29,4 +32,4 @@ services:
       - ${IP}:9001:80
     environment:
       - PMA_HOST=mariadb
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - ROOT_PASSWORD=${ROOT_PASSWORD}

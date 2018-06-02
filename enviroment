@@ -3,4 +3,4 @@ PUID=1000
 PGID=999
 TZ="Australia/Perth"
 USERDIR="/home/nathan"
-MYSQL_ROOT_PASSWORD="bitterpilot"
+ROOT_PASSWORD="bitterpilot"
