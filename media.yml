@@ -1,0 +1,175 @@
+version: "3.6"
+services:
+# Media Stuff
+
+  # Downloaders
+  # For configeration see
+  # https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/#Downloaders
+
+  qbittorrent:
+    container_name: "qbittorrent"
+    image: "linuxserver/qbittorrent"
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/qbittorrent:/config
+      - ${USERDIR}/Downloads/completed:/downloads
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+      - "9004:9004"
+      - "6881:6881"
+      - "6881:6881/udp"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - UMASK_SET=002
+      - WEBUI_PORT=9004
+
+  sabnzbd:
+    container_name: "sabnzbd"
+    image: "linuxserver/sabnzbd"
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/sabnzbd:/config
+      - ${USERDIR}/Downloads/completed:/downloads
+      - ${USERDIR}/Downloads/incomplete:/incomplete-downloads
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+        - "9005:8080"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+  # Retrievers
+  #  Ombi allows you to accept Movie or TV Show requests from friends and family.
+  ombi:
+    container_name: ombi
+    image: linuxserver/ombi
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/ombi:/config
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+      - "9009:3579"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+  radarr:
+    container_name: "radarr"
+    image: "linuxserver/radarr"
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/radarr:/config
+      - ${USERDIR}/Downloads/completed:/downloads
+      # TODO change media dir
+      - ${USERDIR}/media/movies:/movies
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+      - "9006:7878"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+  sonarr:
+    container_name: "sonarr"
+    image: "linuxserver/sonarr"
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/sonarr:/config
+      - ${USERDIR}/Downloads/completed:/downloads
+      # TODO change media dir
+      - ${USERDIR}/media/tvshows:/tv
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+        - "9007:8989"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+  # Media server
+  plex:
+    container_name: "plex"
+    image: plexinc/pms-docker
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/plexms:/config
+      # temporary folder for transcoding.
+      - ${USERDIR}/Downloads/plex_tmp:/transcode
+      # TODO Change media directory
+      - /media/media:/media
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+      - "32400:32400/tcp"
+      - "3005:3005/tcp"
+      - "8324:8324/tcp"
+      - "32469:32469/tcp"
+      - "1900:1900/udp"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+    environment:
+      - TZ=${TZ}
+      - HOSTNAME="Docker Plex"
+      - PLEX_CLAIM="claim-x5RqoT5zRdk5yHfd5iBb"
+      - PLEX_UID=${PUID}
+      - PLEX_GID=${PGID}
+      - ADVERTISE_IP="http://192.168.1.122:32400/"
+
+  # Monitoring Plex Usage
+  tautulli:
+    container_name: tautulli
+    image: linuxserver/tautulli
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/tautulli/config:/config
+      - ${USERDIR}/docker/tautulli/logs:/logs:ro
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+      - "9008:8181"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+  # Hydra is a meta search for NZB indexers
+  hydra:
+    container_name: "hydra"
+    image: "linuxserver/hydra"
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/hydra:/config
+      - ${USERDIR}/Downloads:/downloads
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+      - "9010:5075"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ} 
+  
+  # Jackett is a proxy server that translates search queries from apps such as SickRage,
+  # CouchPotato, Sonarr, Mylar, Radarr, etc. into torrent tracker-site-specific HTTP
+  # queries.
+  jackett:
+    container_name: "jackett"
+    image: "linuxserver/jackett"
+    restart: always
+    volumes:
+      - ${USERDIR}/docker/jackett:/config
+      - ${USERDIR}/Downloads/completed:/downloads
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${USERDIR}/docker/shared:/shared
+    ports:  # TODO add ipaddress hostip:hostport:containerport
+      - "9011:9117"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
