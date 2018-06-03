@@ -11,9 +11,9 @@ services:
     image: "linuxserver/qbittorrent"
     restart: always
     ports:
-      - "${IP}:9004:9004"
-      - "${IP}:6881:6881"
-      - "${IP}:6881:6881/udp"
+      - ${IP}:9004:9004
+      - ${IP}:6881:6881
+      - ${IP}:6881:6881/udp
     volumes:
       - ${USERDIR}/docker/qbittorrent:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -30,7 +30,7 @@ services:
     image: "linuxserver/sabnzbd"
     restart: always
     ports:
-      - "${IP}:9005:8080"
+      - ${IP}:9005:8080
     volumes:
       - ${USERDIR}/docker/sabnzbd:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -48,7 +48,7 @@ services:
     image: linuxserver/ombi
     restart: always
     ports:
-      - "${IP}:9009:3579"
+      - ${IP}:9009:3579
     volumes:
       - ${USERDIR}/docker/ombi:/config
       - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
@@ -62,7 +62,7 @@ services:
     image: "linuxserver/radarr"
     restart: always
     ports:
-      - "${IP}:9006:7878"
+      - ${IP}:9006:7878
     volumes:
       - ${USERDIR}/docker/radarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -80,7 +80,7 @@ services:
     image: "linuxserver/sonarr"
     restart: always
     ports:
-      - "${IP}:9007:8989"
+      - ${IP}:9007:8989
     volumes:
       - ${USERDIR}/docker/sonarr:/config
       - ${USERDIR}/Downloads/completed:/downloads
@@ -99,13 +99,13 @@ services:
     image: plexinc/pms-docker
     restart: always
     ports:
-      - "${IP}:32400:32400/tcp"
-      - "${IP}:3005:3005/tcp"
-      - "${IP}:8324:8324/tcp"
-      - "${IP}:32469:32469/tcp"
-      - "${IP}:1900:1900/udp"
-      - "${IP}:32410:32410/udp"
-      - "${IP}:32412-32414:32412-32414/udp"
+      - ${IP}:32400:32400/tcp
+      - ${IP}:3005:3005/tcp
+      - ${IP}:8324:8324/tcp
+      - ${IP}:32469:32469/tcp
+      - ${IP}:1900:1900/udp
+      - ${IP}:32410:32410/udp
+      - ${IP}:32412-32414:32412-32414/udp
     volumes:
       # path to plex database
       - ${USERDIR}/docker/plexms:/config
@@ -129,7 +129,7 @@ services:
     image: linuxserver/tautulli
     restart: always
     ports:
-      - "${IP}:9008:8181"
+      - ${IP}:9008:8181
     volumes:
       - ${USERDIR}/docker/tautulli/config:/config
       - ${USERDIR}/docker/tautulli/logs:/logs:ro
@@ -146,7 +146,7 @@ services:
     image: "linuxserver/hydra"
     restart: always
     ports:
-      - "${IP}:9010:5075"
+      - ${IP}:9010:5075
     volumes:
       - ${USERDIR}/docker/hydra:/config
       - ${USERDIR}/Downloads:/downloads
@@ -164,7 +164,7 @@ services:
     image: "linuxserver/jackett"
     restart: always
     ports:
-      - "${IP}:9011:9117"
+      - ${IP}:9011:9117
     volumes:
       - ${USERDIR}/docker/jackett:/config
       - ${USERDIR}/Downloads/completed:/downloads
