@@ -70,7 +70,7 @@ services:
 
   # steamcache:
   #   container_name: SteamCache
-  #   image: steamcache/steamcache
+  #   image: steamcache/steamcac3he
   #   restart: always
   #   hostname: SteamCache
   #   ports:
