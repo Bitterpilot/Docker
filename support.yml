@@ -75,7 +75,7 @@ services:
     hostname: SteamCache
     network_mode: "host"
     volumes:
-      - /share/Data/SteamCache logs:/data/logs
-      - SteamCache:/var/www
-      - /share/Steam Cache:/data/cache
+      - /share/Data/SteamCacheLogs:/data/logs
+      - /share/SteamCache/www:/var/www
+      - /share/SteamCache/cache:/data/cache
       - ${USERDIR}/docker/shared:/shared
