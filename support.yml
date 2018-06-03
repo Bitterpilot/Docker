@@ -9,7 +9,7 @@ services:
     restart: always
     command: --templates http://templates/templates.json
     ports:  # TODO add ipaddress hostip:hostport:containerport
-      - ${IP}":9000:9000"
+      - ${IP}:9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${USERDIR}/docker/portainer/data:/data
@@ -39,7 +39,7 @@ services:
     image: lsiocommunity/organizr
     restart: always
     ports: # TODO add ipaddress hostip:hostport:containerport
-      - ${IP}":80:80"
+      - ${IP}:80:80
     volumes:
       - ${USERDIR}/docker/organizr:/config
       - ${USERDIR}/docker/shared:/shared
@@ -53,10 +53,10 @@ services:
     image: sameersbn/bind
     restart: always
     ports:
-      - ${IP}":10000:10000"
-      - ${IP}":10022:22"
-      - ${IP}":53:53"
-      - ${IP}":53:53/udp"
+      - ${IP}:10000:10000
+      - ${IP}:10022:22
+      - ${IP}:53:53
+      - ${IP}:53:53/udp
     volumes:
       - /share/Data/DNS/bind:/data/bind/etc
       - ${USERDIR}/docker/shared:/shared
