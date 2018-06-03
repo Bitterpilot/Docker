@@ -70,7 +70,7 @@ services:
 
   steamcache:
     container_name: SteamCache
-    image: steamcache/steamcac3he
+    image: steamcache/steamcache
     restart: always
     hostname: SteamCache
     network_mode: "host"
