@@ -48,25 +48,25 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
 
-  # bind:
-  #   container_name: BindDNS
-  #   image: sameersbn/bind
-  #   restart: always
-  #   ports:
-  #     - "${IP}:10000:10000"
-  #     - "${IP}:10022:22"
-  #     - "${IP}:53:53"
-  #     - "${IP}:53:53/udp"
-  #   volumes:
-  #     - /share/Data/DNS/bind:/data/bind/etc
-  #     - ${USERDIR}/docker/shared:/shared
-  #   environment:
-  #     - BIND_USER=bind
-  #     - BIND_VERSION=1:9.9.5
-  #     - DATA_DIR=/data
-  #     - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-  #     - WEBMIN_VERSION=1.8
-  #     - ROOT_PASSWORD=${ROOT_PASSWORD}
+  bind:
+    container_name: BindDNS
+    image: sameersbn/bind
+    restart: always
+    ports:
+      - "${IP}:10000:10000"
+      - "${IP}:10022:22"
+      - "${IP}:53:53"
+      - "${IP}:53:53/udp"
+    volumes:
+      - /share/Data/DNS/bind:/data/bind/etc
+      - ${USERDIR}/docker/shared:/shared
+    environment:
+      - BIND_USER=bind
+      - BIND_VERSION=1:9.9.5
+      - DATA_DIR=/data
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - WEBMIN_VERSION=1.8
+      - ROOT_PASSWORD=${ROOT_PASSWORD}
 
   steamcache:
     container_name: SteamCache
