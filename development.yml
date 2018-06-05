@@ -1,7 +1,20 @@
 version: "3.6"
 services:
   gitlab:
-  must have 192.168.1.5
+    container_name: gitlab
+    image: gitlab/gitlab-ce
+    restart: always
+    hostname: gitlab
+    network_mode: "host"
+    volumes:
+      ${USERDIR}/docker/gitlab/logs:/var/log/gitlab
+      ${USERDIR}/docker/gitlab/data:/var/opt/gitlab
+      ${USERDIR}/docker/gitlab/config:/etc/gitlab
+    environment:
+      - ROOT_PASSWORD=${ROOT_PASSWORD}
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
 
   mariadb:
     container_name: "mariadb"
@@ -14,7 +27,7 @@ services:
         protocol: tcp
         mode: host
     volumes:
-        - ${USERDIR}/docker/mariadb:/config
+      - ${USERDIR}/docker/mariadb:/config
     environment:
       - ROOT_PASSWORD=${ROOT_PASSWORD}
       - PUID=${PUID}
