@@ -1,6 +1,6 @@
-# [^sources]
+# 
 
-## load balancer nginx
+## load balancer nginx[^nginxSource]
 accepts incoming on port 80 and routs them to continers ports
 #### Install nginx
 ```bash
@@ -40,4 +40,4 @@ ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
 ```
 
 
-[^sources]: [nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
+[^nginxSource]: [Nginx source](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
