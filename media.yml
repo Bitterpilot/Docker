@@ -15,9 +15,9 @@ services:
       - ${IP}:6881:6881
       - ${IP}:6881:6881/udp
     volumes:
-      - ${USERDIR}/docker/qbittorrent:/config
-      - ${USERDIR}/Downloads/completed:/downloads
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/qbittorrent:/config
+      - ${USERDIR}/downloads/completed:/downloads
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -32,10 +32,10 @@ services:
     ports:
       - ${IP}:9005:8080
     volumes:
-      - ${USERDIR}/docker/sabnzbd:/config
-      - ${USERDIR}/Downloads/completed:/downloads
-      - ${USERDIR}/Downloads/incomplete:/incomplete-downloads
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/sabnzbd:/config
+      - ${USERDIR}/downloads/completed:/downloads
+      - ${USERDIR}/downloads/incomplete:/incomplete-downloads
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -50,8 +50,8 @@ services:
     ports:
       - ${IP}:9009:3579
     volumes:
-      - ${USERDIR}/docker/ombi:/config
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/ombi:/config
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -64,12 +64,12 @@ services:
     ports:
       - ${IP}:9006:7878
     volumes:
-      - ${USERDIR}/docker/radarr:/config
-      - ${USERDIR}/Downloads/completed:/downloads
+      - ${USERDIR}/radarr:/config
+      - ${USERDIR}/downloads/completed:/downloads
       # TODO change media dir
       - ${USERDIR}/media/movies:/movies
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -82,12 +82,12 @@ services:
     ports:
       - ${IP}:9007:8989
     volumes:
-      - ${USERDIR}/docker/sonarr:/config
-      - ${USERDIR}/Downloads/completed:/downloads
+      - ${USERDIR}/sonarr:/config
+      - ${USERDIR}/downloads/completed:/downloads
       # TODO change media dir
       - ${USERDIR}/media/tvshows:/tv
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -108,13 +108,13 @@ services:
       - ${IP}:32412-32414:32412-32414/udp
     volumes:
       # path to plex database
-      - ${USERDIR}/docker/plexms:/config
+      - ${USERDIR}/plexms:/config
       # temporary folder for transcoding.
-      - ${USERDIR}/Downloads/plex_tmp:/transcode
+      - ${USERDIR}/downloads/plex_tmp:/transcode
       # 
       # TODO Change media directory
       - /media/media:/media
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - HOSTNAME="PlexServer"
       - PLEX_CLAIM="claim-x5RqoT5zRdk5yHfd5iBb"
@@ -131,9 +131,9 @@ services:
     ports:
       - ${IP}:9008:8181
     volumes:
-      - ${USERDIR}/docker/tautulli/config:/config
-      - ${USERDIR}/docker/tautulli/logs:/logs:ro
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/tautulli/config:/config
+      - ${USERDIR}/tautulli/logs:/logs:ro
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -148,9 +148,9 @@ services:
     ports:
       - ${IP}:9010:5075
     volumes:
-      - ${USERDIR}/docker/hydra:/config
-      - ${USERDIR}/Downloads:/downloads
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/hydra:/config
+      - ${USERDIR}/downloads:/downloads
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -166,10 +166,10 @@ services:
     ports:
       - ${IP}:9011:9117
     volumes:
-      - ${USERDIR}/docker/jackett:/config
-      - ${USERDIR}/Downloads/completed:/downloads
+      - ${USERDIR}/jackett:/config
+      - ${USERDIR}/downloads/completed:/downloads
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
+      - ${USERDIR}/shared:/shared    # a shared folder between all of the containers for things like SSL certificates etc
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
