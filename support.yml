@@ -12,8 +12,8 @@ services:
       - ${IP}:9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${USERDIR}/docker/portainer/data:/data
-      - ${USERDIR}/docker/shared:/shared
+      - ${USERDIR}/portainer/data:/data
+      - ${USERDIR}/shared:/shared
     environment:
       - TZ=${TZ}
 
@@ -41,8 +41,8 @@ services:
     ports: # TODO add ipaddress hostip:hostport:containerport
       - ${IP}:80:80
     volumes:
-      - ${USERDIR}/docker/organizr:/config
-      - ${USERDIR}/docker/shared:/shared
+      - ${USERDIR}/organizr/config:/config
+      - ${USERDIR}/shared:/shared
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -58,8 +58,8 @@ services:
       - ${IP}:53:53
       - ${IP}:53:53/udp
     volumes:
-      - /share/Data/DNS/bind:/data/bind/etc
-      - ${USERDIR}/docker/shared:/shared
+      - ${USERDIR}/bind:/data/bind/etc
+      - ${USERDIR}/shared:/shared
     environment:
       - BIND_USER=bind
       - BIND_VERSION=1:9.9.5
@@ -75,7 +75,7 @@ services:
     hostname: SteamCache
     network_mode: "host"
     volumes:
-      - /share/Data/SteamCacheLogs:/data/logs
-      - /share/SteamCache/www:/var/www
-      - /share/SteamCache/cache:/data/cache
-      - ${USERDIR}/docker/shared:/shared
+      - ${USERDIR}/SteamCache/logs:/data/logs
+      - ${USERDIR}/SteamCache/cache:/data/cache
+      - ${USERDIR}/SteamCache/www:/var/www
+      - ${USERDIR}/shared:/shared

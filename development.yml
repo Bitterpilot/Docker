@@ -7,9 +7,9 @@ services:
     hostname: gitlab
     network_mode: "host"
     volumes:
-      ${USERDIR}/docker/gitlab/logs:/var/log/gitlab
-      ${USERDIR}/docker/gitlab/data:/var/opt/gitlab
-      ${USERDIR}/docker/gitlab/config:/etc/gitlab
+      ${USERDIR}/gitlab/logs:/var/log/gitlab
+      ${USERDIR}/gitlab/data:/var/opt/gitlab
+      ${USERDIR}/gitlab/config:/etc/gitlab
     environment:
       - ROOT_PASSWORD=${ROOT_PASSWORD}
       - PUID=${PUID}
@@ -27,7 +27,7 @@ services:
         protocol: tcp
         mode: host
     volumes:
-      - ${USERDIR}/docker/mariadb:/config
+      - ${USERDIR}/mariadb:/config
     environment:
       - ROOT_PASSWORD=${ROOT_PASSWORD}
       - PUID=${PUID}
