@@ -1,6 +1,7 @@
-/etc/enviroment
+place in /etc/enviroment
 PUID=1000
 PGID=999
 TZ="Australia/Perth"
-USERDIR="/home/nathan"
+USERDIR="/share/docker" on nas
 ROOT_PASSWORD="bitterpilot"
+IP=192.168.x.x   no quotes(not string), get automatically?
