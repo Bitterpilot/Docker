@@ -1,6 +1,6 @@
-place in /etc/enviroment
+place in /etc/enviroment or ~/.profile
 PUID=1000
-PGID=999
+PGID=100
 TZ="Australia/Perth"
 USERDIR="/share/docker" on nas
 ROOT_PASSWORD="bitterpilot"
