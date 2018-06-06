@@ -5,3 +5,10 @@ TZ="Australia/Perth"
 USERDIR="/share/docker" on nas
 ROOT_PASSWORD="bitterpilot"
 IP=192.168.x.x   no quotes(not string), get automatically?
+
+PUID=1000
+PGID=100
+TZ="Australia/Perth"
+USERDIR="/share/docker"
+ROOT_PASSWORD="bitterpilot"
+IP=192.168.1.119
