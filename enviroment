@@ -6,3 +6,6 @@ USERDIR="/share/docker" on nas
 ROOT_PASSWORD="bitterpilot"
 # IP= set in the endpoint
 # portainer > endpoints > local > public ip
+
+C:\Users\Nathan\Documents\media server\
+/home/nathan/media server

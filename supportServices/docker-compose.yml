@@ -51,7 +51,6 @@ services:
   bind:
     container_name: Bind_DNS
     image: sameersbn/bind
-    restart: always
     ports:
       - 10000:10000
       - 10022:22
