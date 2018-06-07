@@ -25,3 +25,6 @@ TZ="America/New_York"
 USERDIR="/home/USER"
 MYSQL_ROOT_PASSWORD="passsword"
 ```
+
+
+https://forum.qnap.com/viewtopic.php?t=103684
