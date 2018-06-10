@@ -50,7 +50,8 @@ check that the server is actually serving pages
 get the ip address
 
 ```bash
-ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+[[ $platform == 'linux' ]]; then
+    export IP="$(ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//' | awk '!/[a-z]/')"
 ```
 
 [^nginxSource]: [Nginx source](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
