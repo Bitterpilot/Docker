@@ -53,8 +53,8 @@ services:
     image: sameersbn/bind
     ports:
       - 10000:10000
-      - 10022:22
-      - 53:53
+      - 10022:202
+      - 53:503
       - 53:53/udp
     volumes:
       - ${USERDIR}/bind:/data/bind/etc
