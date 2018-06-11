@@ -24,3 +24,4 @@ elif [[ $platform == 'mac' ]]; then
 fi
 
 # TODO add a switch to direct export to permanent enviroment variables
+docker-compose -f ~/Documents/docker/SupportServices/docker-compose.yml up -d
