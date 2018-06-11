@@ -5,6 +5,7 @@ services:
     image: gitlab/gitlab-ce
     restart: always
     hostname: gitlab
+    # TODO: need a better network mode
     network_mode: "host"
     volumes:
       ${USERDIR}/gitlab/logs:/var/log/gitlab
