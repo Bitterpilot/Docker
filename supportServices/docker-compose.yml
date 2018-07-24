@@ -11,8 +11,8 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${USERDIR}/portainer/data:/data
-      - ${USERDIR}/shared:/shared
+      - ${CONTAINERDIR}/portainer/data:/data
+      - ${CONTAINERDIR}/shared:/shared
     environment:
       - TZ=${TZ}
 
@@ -41,8 +41,8 @@ services:
     ports:
       - 80:80
     volumes:
-      - ${USERDIR}/organizr/config:/config
-      - ${USERDIR}/shared:/shared
+      - ${CONTAINERDIR}/organizr/config:/config
+      - ${CONTAINERDIR}/shared:/shared
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
@@ -57,8 +57,8 @@ services:
       - 53:503
       - 53:53/udp
     volumes:
-      - ${USERDIR}/bind:/data/bind/etc
-      - ${USERDIR}/shared:/shared
+      - ${CONTAINERDIR}/bind:/data/bind/etc
+      - ${CONTAINERDIR}/shared:/shared
     environment:
       - ROOT_PASSWORD=${ROOT_PASSWORD}
 
@@ -71,7 +71,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ${USERDIR}/steamCache/logs:/data/logs
-      - ${USERDIR}/steamCache/cache:/data/cache
-      - ${USERDIR}/steamCache/www:/var/www
-      - ${USERDIR}/shared:/shared
+      - ${CONTAINERDIR}/steamCache/logs:/data/logs
+      - ${CONTAINERDIR}/steamCache/cache:/data/cache
+      - ${CONTAINERDIR}/steamCache/www:/var/www
+      - ${CONTAINERDIR}/shared:/shared

@@ -22,7 +22,7 @@ Add the following as separate lines at the end of the file:
 PUID=1000
 PGID=140
 TZ="America/New_York"
-USERDIR="/home/USER"
+CONTAINERDIR="/home/USER"
 MYSQL_ROOT_PASSWORD="passsword"
 ```
 

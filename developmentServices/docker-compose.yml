@@ -8,9 +8,9 @@ services:
     # TODO: need a better network mode
     network_mode: "host"
     volumes:
-      ${USERDIR}/gitlab/logs:/var/log/gitlab
-      ${USERDIR}/gitlab/data:/var/opt/gitlab
-      ${USERDIR}/gitlab/config:/etc/gitlab
+      ${CONTAINERDIR}/gitlab/logs:/var/log/gitlab
+      ${CONTAINERDIR}/gitlab/data:/var/opt/gitlab
+      ${CONTAINERDIR}/gitlab/config:/etc/gitlab
     environment:
       - ROOT_PASSWORD=${ROOT_PASSWORD}
       - PUID=${PUID}

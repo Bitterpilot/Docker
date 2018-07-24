@@ -13,7 +13,8 @@ fi
 export PUID=1000
 export PGID=100
 export TZ="Australia/Perth"
-export USERDIR="~/docker"
+export CONTAINERDIR="/share/CACHEDEV3_DATA/containerData/"
+export MEDIADIR="/share/CACHEDEV2_DATA/"
 export ROOT_PASSWORD="bitterpilot"
 
 # Retrieve ip and export to temporary enviroment variable.
