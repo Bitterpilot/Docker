@@ -1,3 +1,6 @@
 [submodule "composeGuacamole"]
 	path = composeGuacamole
 	url = git@git.bitterpilot.org:Bitterpilot/composeGuacamole.git
+[submodule "mediaServices"]
+	path = mediaServices
+	url = git@git.bitterpilot.org:Bitterpilot/mediaServices.git
