@@ -28,3 +28,9 @@ MYSQL_ROOT_PASSWORD="passsword"
 
 
 https://forum.qnap.com/viewtopic.php?t=103684
+
+## traefik loadbalancer
+https://docs.traefik.io/user-guide/docker-and-lets-encrypt/
+
+## intrest
+https://www.reddit.com/r/homelab/comments/8zytby/containers_which_ones_do_you_run_at_home/
