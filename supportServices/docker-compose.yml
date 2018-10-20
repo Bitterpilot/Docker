@@ -1,8 +1,5 @@
-version: "3.7"
+version: "2"
 services:
-# Support Containers
-
-# container managment
   portainer:
     container_name: Portainer
     image: portainer/portainer
@@ -11,10 +8,10 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${CONTAINERDIR}/portainer/data:/data
-      - ${CONTAINERDIR}/shared:/shared
+      - /share/CACHEDEV3_DATA/containerData/portainer/data:/data
+      - /share/CACHEDEV3_DATA/containerData/shared:/shared
     environment:
-      - TZ=${TZ}
+      - TZ="Australia/Perth"
 
   # Watchtower monitors your Docker containers. If their images in the Docker Store
   # change, then watchtower will pull the new image, shutdown the running container
@@ -31,47 +28,52 @@ services:
     # You can use the 6-digit cron schedule or you can specify time interval:
     # --interval 30 for checking every 30 seconds. If you want weekly, then use
     # 0 0 23 * * SUN for every update at 11 pm on Sundays.
-    command: --schedule "0 0 4 * * *" --cleanup
+    command: '--schedule "0 0 4 * * *" --cleanup'
 
-# 
-  organizr:
-    container_name: Organizr
-    image: lsiocommunity/organizr
+  pihole:
+    image: pihole/pihole:latest
+    hostname: pihole
+    networks:
+      qnet-static:
+        ipv4_address: 192.168.1.2
+    environment:
+      # enter your docker host IP here
+      ServerIP: 192.168.1.2
+    volumes:
+      - /share/CACHEDEV3_DATA/containerData/pihole/config:/etc/pihole/
+      - /share/CACHEDEV3_DATA/containerData/pihole/dns:/etc/dnsmasq.d/
+      # WARNING: if this log don't exist as a file on the host already
+      # docker will try to create a directory in it's place making for lots of errors
+      - /share/CACHEDEV3_DATA/containerData/share/log/pihole.log:/var/log/pihole.log
+    cap_add:
+      - NET_ADMIN
     restart: always
-    ports:
-      - 80:80
-    volumes:
-      - ${CONTAINERDIR}/organizr/config:/config
-      - ${CONTAINERDIR}/shared:/shared
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
-
-  bind:
-    container_name: Bind_DNS
-    image: sameersbn/bind
-    ports:
-      - 10000:10000
-      - 10022:202
-      - 53:503
-      - 53:53/udp
-    volumes:
-      - ${CONTAINERDIR}/bind:/data/bind/etc
-      - ${CONTAINERDIR}/shared:/shared
-    environment:
-      - ROOT_PASSWORD=${ROOT_PASSWORD}
+    extra_hosts:
+      - "git.bitterpilot.org:192.168.1.5"
 
   steamcache:
     container_name: Steam_Cache
     image: steamcache/steamcache
     restart: always
     hostname: SteamCache
-    network_mode: host
+    networks:
+      qnet-static:
+        ipv4_address: 192.168.1.4
     ports:
       - 80:80
     volumes:
-      - ${CONTAINERDIR}/steamCache/logs:/data/logs
-      - ${CONTAINERDIR}/steamCache/cache:/data/cache
-      - ${CONTAINERDIR}/steamCache/www:/var/www
-      - ${CONTAINERDIR}/shared:/shared
+      - /share/CACHEDEV3_DATA/containerData/steamCache/logs:/data/logs
+      - /share/CACHEDEV3_DATA/containerData/steamCache/cache:/data/cache
+      - /share/CACHEDEV3_DATA/containerData/steamCache/www:/var/www
+      - /share/CACHEDEV3_DATA/containerData/shared:/shared
+
+networks:
+  qnet-static:
+    driver: qnet
+    ipam:
+      driver: qnet
+      options:
+        iface: "eth1"
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
