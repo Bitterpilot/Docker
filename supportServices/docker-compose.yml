@@ -1,7 +1,6 @@
 version: "2"
 services:
   portainer:
-    container_name: Portainer
     image: portainer/portainer
     restart: always
     ports:
@@ -18,7 +17,6 @@ services:
   # and restart with the new image and the options you originally set for the container
   # while deploying.
   watchtower:
-    container_name: Watchtower
     image: v2tec/watchtower
     restart: always
     network_mode: "none"
@@ -52,7 +50,6 @@ services:
       - "git.bitterpilot.org:192.168.1.5"
 
   steamcache:
-    container_name: Steam_Cache
     image: steamcache/steamcache
     restart: always
     hostname: SteamCache
