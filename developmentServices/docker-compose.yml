@@ -1,18 +1,25 @@
-version: "3.7"
+version: "2"
 services:
   gitlab:
-    container_name: gitlab
     image: gitlab/gitlab-ce
     restart: always
-    hostname: gitlab
-    # TODO: need a better network mode
-    network_mode: "host"
+    container_name: gitlab
+    hostname: 'git.bitterpilot.org'
+    networks:
+      qnet-static:
+        ipv4_address: 192.168.1.5
     volumes:
-      ${CONTAINERDIR}/gitlab/logs:/var/log/gitlab
-      ${CONTAINERDIR}/gitlab/data:/var/opt/gitlab
-      ${CONTAINERDIR}/gitlab/config:/etc/gitlab
-    environment:
-      - ROOT_PASSWORD=${ROOT_PASSWORD}
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
+      - /share/CACHEDEV3_DATA/containerData/gitlab/logs:/var/log/gitlab
+      - /share/CACHEDEV3_DATA/containerData/gitlab/data:/var/opt/gitlab
+      - /share/CACHEDEV3_DATA/containerData/gitlab/config:/etc/gitlab
+
+networks:
+  qnet-static:
+    driver: qnet
+    ipam:
+      driver: qnet
+      options:
+        iface: "eth1"
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
