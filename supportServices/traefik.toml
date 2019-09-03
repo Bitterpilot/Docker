@@ -1,0 +1,58 @@
+################################################################
+# Global configuration
+################################################################
+debug = true
+logLevel = "DEBUG"
+
+################################################################
+# Entrypoints configuration
+################################################################
+defaultEntryPoints = ["http", "https"]
+
+[entryPoints]
+  [entryPoints.dashboard]
+    address = ":8080"
+    [entryPoints.dashboard.auth]
+      [entryPoints.dashboard.auth.basic]
+        users = ["admin:$apr1$0Qptk70S$jHi9lyI8tS58lYwluL/LT1"]
+  [entryPoints.http]
+    address = ":80"
+      [entryPoints.http.redirect]
+        entryPoint = "https"
+  [entryPoints.https]
+    address = ":443"
+      [entryPoints.https.tls]
+################################################################
+# API and dashboard configuration
+################################################################
+[api]
+  entryPoint = "dashboard"
+  # dashboard = true
+
+################################################################
+# Let’s Encrypt certificate support
+################################################################
+[acme]
+  email = "webmaster@bitterpilot.org"
+  storage = "acme.json"
+  entryPoint = "https"
+  onHostRule = true
+    [acme.httpChallenge]
+    entryPoint = "http"
+
+################################################################
+# qNas Catalog
+################################################################
+[docker]
+  domain = "home.bitterpilot.org"
+  watch = true
+  network = "web"
+
+################################################################
+# Consul Catalog
+################################################################
+# [consulCatalog]
+  # endpoint = "127.0.0.1:8500"
+  # exposedByDefault = false
+  # prefix = "traefik"
+  # domain = "localhost"

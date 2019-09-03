@@ -1,17 +1,6 @@
+# docker-compose -f supportServices/docker-compose.yml up -d --build
 version: "2"
 services:
-  portainer:
-    image: portainer/portainer
-    restart: always
-    ports:
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /share/CACHEDEV3_DATA/containerData/portainer/data:/data
-      - /share/CACHEDEV3_DATA/containerData/shared:/shared
-    environment:
-      - TZ="Australia/Perth"
-
   # Watchtower monitors your Docker containers. If their images in the Docker Store
   # change, then watchtower will pull the new image, shutdown the running container
   # and restart with the new image and the options you originally set for the container
@@ -19,7 +8,6 @@ services:
   watchtower:
     image: v2tec/watchtower
     restart: always
-    network_mode: "none"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     # --schedule "0 0 4 * * *" – containers are checked for updates at 4 am everyday.
@@ -28,42 +16,63 @@ services:
     # 0 0 23 * * SUN for every update at 11 pm on Sundays.
     command: '--schedule "0 0 4 * * *" --cleanup'
 
-  pihole:
-    image: pihole/pihole:latest
-    hostname: pihole
+  portainer:
+    image: portainer/portainer
+    restart: always
     networks:
       qnet-static:
-        ipv4_address: 192.168.1.2
-    environment:
-      # enter your docker host IP here
-      ServerIP: 192.168.1.2
+        ipv4_address: 192.168.0.10
     volumes:
-      - /share/CACHEDEV3_DATA/containerData/pihole/config:/etc/pihole/
-      - /share/CACHEDEV3_DATA/containerData/pihole/dns:/etc/dnsmasq.d/
-      # WARNING: if this log don't exist as a file on the host already
-      # docker will try to create a directory in it's place making for lots of errors
-      - /share/CACHEDEV3_DATA/containerData/share/log/pihole.log:/var/log/pihole.log
-    cap_add:
-      - NET_ADMIN
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${CONTAINERDIR}/portainer/data:/data
+      - ${CONTAINERDIR}/shared:/shared
+    environment:
+      - TZ=${TimeZone}
+
+  pihole:
+    image: pihole/pihole
     restart: always
-    extra_hosts:
-      - "git.bitterpilot.org:192.168.1.5"
+    hostname: dockaPi
+    networks:
+      qnet-static:
+        ipv4_address: 192.168.0.3
+    environment:
+      - IPv6=False
+      - ServerIP=192.168.0.3
+      - TZ=${TimeZone}
+      - DNS1="1.1.1.1"
+      - DNS2="1.0.0.1"
+      - WEBPASSWORD=""
+    volumes:
+      - ${CONTAINERDIR}/pihole/etc/pihole/:/etc/pihole/
+      - ${CONTAINERDIR}/pihole/etc/dnsmasq.d/:/etc/dnsmasq.d/
+
+  # reverse-proxy:
+  #   image: traefik
+  #   restart: unless-stopped
+  #   command: --api --docker # Enables the web UI and tells Traefik to listen to docker
+  #   networks:
+  #     qnet-static:
+  #       ipv4_address: 192.168.0.11
+  #   ports:
+  #     - "80:80" # The HTTP listen port
+  #     - "8080:8080" # The Web UI (enabled by --api)
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
 
   steamcache:
     image: steamcache/steamcache
-    restart: always
-    hostname: SteamCache
+    restart: unless-stopped
     networks:
       qnet-static:
-        ipv4_address: 192.168.1.4
-    ports:
-      - 80:80
+        ipv4_address: 192.168.0.12
     volumes:
-      - /share/CACHEDEV3_DATA/containerData/steamCache/logs:/data/logs
-      - /share/CACHEDEV3_DATA/containerData/steamCache/cache:/data/cache
-      - /share/CACHEDEV3_DATA/containerData/steamCache/www:/var/www
-      - /share/CACHEDEV3_DATA/containerData/shared:/shared
+      - ${CONTAINERDIR}/steamCache/logs:/data/logs
+      - ${CONTAINERDIR}/steamCache/cache:/data/cache
+      - ${CONTAINERDIR}/steamCache/www:/var/www
+      - ${CONTAINERDIR}/shared:/shared
 
+# in container station create using network mode bridge
 networks:
   qnet-static:
     driver: qnet
@@ -72,5 +81,5 @@ networks:
       options:
         iface: "eth1"
       config:
-        - subnet: 192.168.1.0/24
-          gateway: 192.168.1.1
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1
