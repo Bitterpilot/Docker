@@ -6,7 +6,7 @@ services:
   # and restart with the new image and the options you originally set for the container
   # while deploying.
   watchtower:
-    image: v2tec/watchtower
+    image: containrrr/watchtower
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -36,6 +36,8 @@ services:
     networks:
       qnet-static:
         ipv4_address: 192.168.0.3
+    cap_add:
+      - NET_ADMIN
     environment:
       - IPv6=False
       - ServerIP=192.168.0.3
