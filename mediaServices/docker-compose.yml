@@ -1,0 +1,103 @@
+version: "3.7"
+services:
+  # Media Stuff
+
+  # Downloaders
+  # For configeration see
+  # https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/#Downloaders
+
+  qbittorrent:
+    image: "linuxserver/qbittorrent"
+    restart: always
+    ports:
+      - 30004:9004
+      - 6881:6881
+      - 6881:6881/udp
+    volumes:
+      - ${CONTAINERDIR}/shared:/shared # a shared folder between all of the containers for things like SSL certificates etc
+      - ${CONTAINERDIR}/qbittorrent:/config
+      - ${MEDIADIR}/downloads/completed:/downloads
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK_SET=002
+      - WEBUI_PORT=9004
+      - TZ=${TimeZone}
+    labels:
+      - "traefik.enabled=true"
+      - "traefik.backend=qbittorrent"
+      - "traefik.frontend.rule=Host:home.bitterpilot.org; PathPrefix: /qbittorrent"
+      - "traefik.port=30004"
+
+  # Managers
+
+  radarr:
+    image: "linuxserver/radarr"
+    restart: always
+    depends_on:
+      - jackett
+    ports:
+      - 30006:7878
+    volumes:
+      - ${CONTAINERDIR}/shared:/shared # a shared folder between all of the containers for things like SSL certificates etc
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${CONTAINERDIR}/radarr:/config
+      - ${MEDIADIR}/downloads/completed:/downloads
+      - ${MEDIADIR}/media/movies:/movies
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TimeZone}
+    labels:
+      - "traefik.enabled=true"
+      - "traefik.backend=radarr"
+      - "traefik.frontend.rule=Host:home.bitterpilot.org; PathPrefix: /radarr"
+      - "traefik.port=30006"
+
+  sonarr:
+    image: "linuxserver/sonarr"
+    restart: always
+    depends_on:
+      - jackett
+    ports:
+      - 30007:8989
+    volumes:
+      - ${CONTAINERDIR}/shared:/shared # a shared folder between all of the containers for things like SSL certificates etc
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${CONTAINERDIR}/sonarr:/config
+      # TODO: change media dir
+      - ${MEDIADIR}/downloads/completed:/downloads
+      - ${MEDIADIR}/media/tvshows:/tv
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TimeZone}
+    labels:
+      - "traefik.enabled=true"
+      - "traefik.backend=sonarr"
+      - "traefik.frontend.rule=Host:home.bitterpilot.org; PathPrefix: /sonarr"
+      - "traefik.port=30007"
+
+  # Search
+  # Jackett is a proxy server that translates search queries from apps such as SickRage,
+  # CouchPotato, Sonarr, Mylar, Radarr, etc. into torrent tracker-site-specific HTTP
+  # queries.
+  jackett:
+    image: "linuxserver/jackett"
+    restart: always
+    ports:
+      - 30011:9117
+    volumes:
+      - ${CONTAINERDIR}/jackett:/config
+      - ${MEDIADIR}/downloads/completed:/downloads
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${CONTAINERDIR}/shared:/shared # a shared folder between all of the containers for things like SSL certificates etc
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TimeZone}
+    labels:
+      - "traefik.enabled=true"
+      - "traefik.backend=jackett"
+      - "traefik.frontend.rule=Host:home.bitterpilot.org; PathPrefix: /jackett"
+      - "traefik.port=30011"
