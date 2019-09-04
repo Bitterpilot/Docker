@@ -75,6 +75,7 @@ services:
       - ${CONTAINERDIR}/shared:/shared
 
 # in container station create using network mode bridge
+# more details in docker/Qnap.md
 networks:
   qnet-static:
     driver: qnet
