@@ -1,0 +1,13 @@
+# check this
+# https://www.thepolyglotdeveloper.com/2017/03/nginx-reverse-proxy-containerized-docker-applications/
+version: "3"
+services:
+  nginx-proxy:
+    image: nginx
+    container_name: nginx-proxy
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+      - "./ssl.conf:/etc/nginx/ssl.conf"
+      - "./certs:/etc/ssl/private"
+    network_mode: "host"
+    restart: unless-stopped
