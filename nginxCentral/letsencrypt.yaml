@@ -1,0 +1,24 @@
+---
+# docker-compose -f letsencrypt.yaml up
+version: "2"
+services:
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: letsencrypt
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Sydney
+      - URL=bitterpilot.org
+      - SUBDOMAINS=www,ide,guacamole
+      - VALIDATION=http
+      - EMAIL=nathanminissale@gmail.com #optional
+      - ONLY_SUBDOMAINS=false #optional
+      - STAGING=false #optional Set to true to retrieve certs in staging mode. Rate limits will be much higher, but the resulting cert will not pass the browser's security test. Only to be used for testing purposes.
+    volumes:
+      - ./test_certs:/config
+    ports:
+      - 443:443
+      - 80:80
