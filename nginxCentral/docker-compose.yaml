@@ -9,6 +9,7 @@ services:
       - "./nginx.conf:/etc/nginx/nginx.conf"
       - "./ssl.conf:/etc/nginx/ssl.conf"
       - "./certs:/etc/ssl/private"
+      - "/var/run/codeserver.sock:/var/run/codeserver.sock"
     ports:
         - 80:80
         - 443:443
@@ -17,3 +18,4 @@ services:
   StaticSite_www:
     container_name: StaticSite_www
     image: www.bitterpilot.org
+    restart: unless-stopped
